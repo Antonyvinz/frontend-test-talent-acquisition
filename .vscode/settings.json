@@ -1,0 +1,27 @@
+{
+    "workbench.colorTheme": "Monokai",
+    "files.exclude": {
+        "**/.classpath": true,
+        "**/.project": true,
+        "**/.settings": true,
+        "**/.factorypath": true
+    },
+    "editor.formatOnSave": true,
+    "prettier.tabWidth": 4,
+    "prettier.printWidth": 200,
+    "workbench.colorCustomizations": {
+        // ----------- Top -------------
+        "titleBar.border": "#FFFF00",
+        // "titleBar.activeBackground": "#ff0000",
+        // "titleBar.activeForeground": "#000000",
+        // ----------- Left -------------
+        "activityBar.background": "#0094d3",
+        // "activityBar.foreground": "#fff000",
+        // "activityBar.border": "#00539e",
+        "activityBar.border": "#fff000",
+        // ----------- Bottom -------------
+        // "statusBar.background": "#ff0000"
+        "statusBar.border": "#fff000"
+        // "statusBar.foreground": "#FFFF00"
+    }
+}
