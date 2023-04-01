@@ -3,17 +3,100 @@
 
 .App {
     // text-align: center;
-    background-color: yellow;
     font-family: "Poppins", sans-serif;
 }
 .header-Background {
     background: #16abf8;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    padding: 38px 0 31px 220px;
+    // padding: 38px 0 31px 220px;
     .header-Title {
         font-weight: 700;
         font-size: 24px;
         text-transform: uppercase;
         color: white;
+        padding: 38px 0;
+        margin: auto;
+        max-width: 1000px;
+    }
+}
+
+.dashboard {
+    // padding: 43px 220px;
+    padding-top: 43px;
+    margin: auto;
+    max-width: 1000px;
+    .activity-title-bar {
+        margin-bottom: 80px;
+    }
+    .activity-title {
+        font-weight: 700;
+        font-size: 36px;
+    }
+    .activity-add-button {
+        height: auto;
+        background: #16abf8;
+        border-radius: 45px;
+        padding: 13px 21px 13px 14px;
+        font-weight: 600;
+        font-size: 18px;
+        color: white;
+    }
+    .activity-empty-vector {
+        height: 400px;
+    }
+    .activity-empty-button {
+        border: solid 5px #e4e4e4;
+        border-radius: 15px;
+        padding: 46px 91px;
+        .ant-btn {
+            background-color: #16abf8;
+            // height: auto;
+            font-size: 60px;
+            font-weight: 800;
+            height: 116.42959594726562px;
+            width: 116.55508422851562px;
+
+            border-radius: 100%;
+            color: white;
+            // padding: 10px 30px;
+        }
+    }
+    .activity-empty-title {
+        margin-top: 30px;
+        font-weight: 600;
+        font-size: 24px;
+        color: #555555;
+    }
+    .activity-item {
+        width: 235px;
+        height: 234px;
+        background: #ffffff;
+        box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.1);
+        border-radius: 12px;
+        .ant-card-body {
+            height: 100%;
+            padding: 22px 26px 25px 27px;
+            display: flex;
+            justify-content: stretch;
+            flex-direction: column;
+        }
+    }
+    .activity-item-title {
+        font-size: 18px;
+        font-weight: 700;
+        color: #111111;
+    }
+    .activity-item-extra {
+        vertical-align: bottom;
+    }
+    .activity-item-date {
+        font-weight: 500;
+        font-size: 14px;
+        color: #888888;
+    }
+    .activity-item-delete-button {
+        border: none;
+        color: #888888;
+        padding: 0;
     }
 }
