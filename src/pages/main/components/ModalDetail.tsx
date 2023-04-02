@@ -81,6 +81,7 @@ function ModalDetail(props: any) {
                     <Form layout="vertical">
                         <Form.Item label="NAMA LIST ITEM" validateStatus={errors.title && touched.title ? "error" : ""}>
                             <Input
+                                className="modal-add-name-input"
                                 data-cy="modal-add-name-input"
                                 placeholder="Tambahkan nama list item"
                                 value={values.title}
