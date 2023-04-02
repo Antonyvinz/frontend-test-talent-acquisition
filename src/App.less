@@ -95,9 +95,6 @@
     }
     .ant-modal-content {
         border-radius: 25px;
-        .modal-information {
-            border-radius: 5px;
-        }
     }
     .modal-header {
         text-align: center;
@@ -167,9 +164,90 @@
         color: #111111;
         overflow: hidden;
         text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        line-clamp: 1;
+        -webkit-box-orient: vertical;
+    }
+    .todo-input-title {
+        width: 516px;
+        border-bottom: solid 1px #111111;
+        font-weight: 700;
+        font-size: 36px;
+        color: #111111;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        padding: 4px 8px;
     }
 
+    .todo-edit-button {
+        height: auto;
+        border: none;
+        color: #111111;
+        padding: 0;
+        font-size: 24px;
+        margin-left: 20px;
+    }
     .todo-empty-state {
         text-align: center;
+    }
+    .todo-item {
+        background: #ffffff;
+        box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.1);
+        border-radius: 12px;
+        padding: 24px 30px;
+        margin-bottom: 10px;
+    }
+    .item-ghost-button {
+        border: none;
+        padding: 0;
+    }
+}
+
+.tambah-list-item {
+    width: 830px;
+    height: 403px;
+    .ant-modal-content {
+        border-radius: 12px !important;
+    }
+    .ant-modal-header {
+        padding: 24px 30px;
+        background-color: transparent;
+    }
+    .ant-modal-title {
+        font-weight: 600;
+        font-size: 18px;
+        color: #111111;
+    }
+    .ant-modal-footer {
+        text-align: end !important;
+        border-top: 1px solid #f0f0f0 !important;
+    }
+    .ant-btn {
+        color: white;
+    }
+    .modal-add-save-button {
+        background: #16abf8;
+    }
+    .button-Disabled {
+        background: #16abf8;
+        opacity: 0.2;
+    }
+    .ant-input {
+        width: 759px;
+        height: 52px;
+        border-radius: 6px;
+    }
+    .ant-modal-body {
+        padding: 38px 40px 0 30px;
+    }
+    label {
+        font-weight: 600;
+        font-size: 12px;
+    }
+    .modal-add-priority-dropdown {
+        width: 205px;
+        // height: 52px;
+        font-size: 16px;
     }
 }
