@@ -21,8 +21,7 @@
 }
 
 .dashboard {
-    // padding: 43px 220px;
-    padding-top: 43px;
+    padding: 43px 12px;
     margin: auto;
     max-width: 1000px;
     .activity-title-bar {
@@ -36,30 +35,13 @@
         height: auto;
         background: #16abf8;
         border-radius: 45px;
-        padding: 13px 21px 13px 14px;
+        padding: 13.5px 29px;
         font-weight: 600;
         font-size: 18px;
         color: white;
     }
-    .activity-empty-vector {
-        height: 400px;
-    }
-    .activity-empty-button {
-        border: solid 5px #e4e4e4;
-        border-radius: 15px;
-        padding: 46px 91px;
-        .ant-btn {
-            background-color: #16abf8;
-            // height: auto;
-            font-size: 60px;
-            font-weight: 800;
-            height: 116.42959594726562px;
-            width: 116.55508422851562px;
-
-            border-radius: 100%;
-            color: white;
-            // padding: 10px 30px;
-        }
+    .activity-empty-state {
+        text-align: center;
     }
     .activity-empty-title {
         margin-top: 30px;
@@ -67,27 +49,19 @@
         font-size: 24px;
         color: #555555;
     }
-    .activity-item {
+    .activity-card {
         width: 235px;
         height: 234px;
-        background: #ffffff;
-        box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.1);
         border-radius: 12px;
-        .ant-card-body {
-            height: 100%;
-            padding: 22px 26px 25px 27px;
-            display: flex;
-            justify-content: stretch;
-            flex-direction: column;
-        }
+        background: #ffffff;
+        padding: 22px 27px;
+        box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.1);
     }
     .activity-item-title {
+        height: 158px;
         font-size: 18px;
         font-weight: 700;
         color: #111111;
-    }
-    .activity-item-extra {
-        vertical-align: bottom;
     }
     .activity-item-date {
         font-weight: 500;
@@ -98,5 +72,71 @@
         border: none;
         color: #888888;
         padding: 0;
+    }
+    .activity-card-skeleton {
+        width: 235px;
+        height: 234px;
+        border-radius: 12px;
+    }
+}
+.modal-information {
+    .ant-modal-content {
+        border-radius: 14px !important;
+    }
+}
+.ant-modal {
+    .ant-modal-body {
+        padding: 0;
+    }
+    .ant-modal-content {
+        border-radius: 25px;
+        .modal-information {
+            border-radius: 5px;
+        }
+    }
+    .modal-header {
+        text-align: center;
+        padding: 16px;
+    }
+    .modal-delete-title {
+        text-align: center;
+        font-weight: 500;
+        font-size: 18px;
+        padding: 16px;
+    }
+    .modal-delete-title-accent {
+        font-weight: 700;
+    }
+    .ant-modal-footer {
+        text-align: center;
+        border: none;
+        // padding-bottom: 43px;
+        padding: 12px 12px 24px;
+    }
+    .ant-btn {
+        margin: 0 16px;
+        height: auto;
+        padding: 13.5px 45px;
+        border-radius: 45px;
+        border: none;
+        font-weight: 600;
+        font-size: 18px;
+    }
+    .modal-delete-cancel-button {
+        background-color: #f4f4f4;
+    }
+    .modal-delete-confirm-button {
+        background-color: #ed4c5c;
+        color: white;
+    }
+    .modal-information-icon {
+        margin-right: 15px;
+        height: 24px;
+        width: 24px;
+    }
+    .modal-information-title {
+        font-size: 14px;
+        font-weight: 500;
+        padding: 20px 30px;
     }
 }
