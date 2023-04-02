@@ -1,5 +1,5 @@
 import { LeftOutlined, PlusOutlined } from "@ant-design/icons";
-import { Button, Checkbox, Col, Dropdown, Image, Input, Menu, MenuProps, Row } from "antd";
+import { Button, Checkbox, Col, Dropdown, Image, Input, Menu, MenuProps, Row, Skeleton } from "antd";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axiosRepository from "../../config/Axios";
@@ -36,10 +36,11 @@ function DetailPage() {
     const [listItem, setListItem] = useState([] as any);
     const [data, setData] = useState({} as any);
     const [dataInit, setDataInit] = useState({} as any);
+    const [editId, setEditId] = useState(0);
     const [modalCreateVisible, setModalCreateVisible] = useState(false);
     const [modalEditVisible, setModalEditVisible] = useState(false);
     const [modalDeleteVisible, setModalDeleteVisible] = useState(false);
-    const [alertVisible, setAlertVisible] = useState(false);
+    const [modalAlertVisible, setModalAlertVisible] = useState(false);
     const [editMode, setEditMode] = useState(false);
     const [toDoTitle, setToDoTitle] = useState("");
     const [deleteId, setDeleteId] = useState(0);
@@ -71,6 +72,12 @@ function DetailPage() {
         });
         setModalCreateVisible(true);
     };
+    const openAlert = () => {
+        setModalAlertVisible(true);
+    };
+    const closeAlert = () => {
+        setModalAlertVisible(false);
+    };
     const closeModal = () => {
         setModalCreateVisible(false);
         setModalEditVisible(false);
@@ -83,12 +90,6 @@ function DetailPage() {
             setButtonLoading(true);
             getData();
         });
-    };
-    const openAlert = () => {
-        setAlertVisible(true);
-    };
-    const closeAlert = () => {
-        setAlertVisible(false);
     };
 
     const deleteToDo = async () => {
@@ -113,7 +114,19 @@ function DetailPage() {
             priority: item?.priority,
         };
         console.log(payload);
-        axiosRepository.patchActiveToDoItem(payload, item?.id).then(() => {
+        axiosRepository.patchToDoItem(payload, item?.id).then(() => {
+            getData();
+        });
+    };
+    const editToDo = (value: any) => {
+        // console.log(value);
+        // console.log(editId);
+        let payload = {
+            is_active: value?.is_active,
+            priority: value?.priority,
+            title: value?.title,
+        };
+        axiosRepository.patchToDoItem(payload, editId).then(() => {
             getData();
         });
     };
@@ -237,91 +250,87 @@ function DetailPage() {
                 </div>
             ) : (
                 <div>
-                    item list
                     {listItem.map((item: any, index: any) => {
                         return (
-                            <div key={item.id} className="todo-item">
-                                <Row justify="space-between">
-                                    <Col>
-                                        <Row gutter={20} align="middle">
+                            <>
+                                {contentLoading ? (
+                                    <Skeleton.Input className="todo-item-skeleton" active />
+                                ) : (
+                                    <div key={item.id} className="todo-item">
+                                        <Row justify="space-between">
                                             <Col>
-                                                <Checkbox
-                                                    onChange={(e: any) => {
-                                                        // console.log(e.target?.checked);
-                                                        checkItem(e.target.checked, item);
-                                                    }}
-                                                    value={item.is_active === 0 ? true : false}
-                                                    // checked={item.is_active === 0 ? true : false}
-                                                />
-                                            </Col>
-                                            <Col>
-                                                <div
-                                                    style={{
-                                                        height: 12,
-                                                        width: 12,
-                                                        backgroundColor: priorityColor(item.priority),
-                                                        borderRadius: 12,
-                                                    }}
-                                                />
-                                            </Col>
-                                            <Col>
-                                                <div style={{ textDecoration: item.is_active === 0 ? "line-through" : "none" }}>{item.title}</div>
+                                                <Row gutter={20} align="middle">
+                                                    <Col>
+                                                        <Checkbox
+                                                            className="todo-item-checkbox"
+                                                            data-cy="todo-item-checkbox"
+                                                            onChange={(e: any) => {
+                                                                // console.log(e.target?.checked);
+                                                                checkItem(e.target.checked, item);
+                                                            }}
+                                                            value={item.is_active === 0 ? true : false}
+                                                            // checked={item.is_active === 0 ? true : false}
+                                                        />
+                                                    </Col>
+                                                    <Col>
+                                                        <div
+                                                            style={{
+                                                                height: 12,
+                                                                width: 12,
+                                                                backgroundColor: priorityColor(item.priority),
+                                                                borderRadius: 12,
+                                                            }}
+                                                        />
+                                                    </Col>
+                                                    <Col>
+                                                        <div className="todo-item-title" data-cy="todo-item-title" style={{ textDecoration: item.is_active === 0 ? "line-through" : "none" }}>
+                                                            {item.title}
+                                                        </div>
+                                                    </Col>
+                                                    <Col>
+                                                        <Button
+                                                            className="item-ghost-button"
+                                                            onClick={() => {
+                                                                // setEditMode(!editMode);
+                                                                setModalEditVisible(true);
+                                                                setDataInit(item);
+                                                                setEditId(item.id);
+                                                            }}
+                                                        >
+                                                            <Image src={iconEdit} preview={false} />
+                                                        </Button>
+                                                    </Col>
+                                                </Row>
                                             </Col>
                                             <Col>
                                                 <Button
                                                     className="item-ghost-button"
                                                     onClick={() => {
-                                                        // setEditMode(!editMode);
+                                                        setModalDeleteVisible(true);
+                                                        setDeleteId(item?.id);
+                                                        setDeleteName(item?.title);
                                                     }}
                                                 >
-                                                    <Image src={iconEdit} preview={false} />
+                                                    <Image className="icon-delete" src={iconDelete} preview={false} />
                                                 </Button>
                                             </Col>
                                         </Row>
-                                    </Col>
-                                    <Col>
-                                        <Button
-                                            className="item-ghost-button"
-                                            onClick={() => {
-                                                setModalDeleteVisible(true);
-                                                setDeleteId(item?.id);
-                                                setDeleteName(item?.title);
-                                            }}
-                                        >
-                                            <Image className="icon-delete" src={iconDelete} preview={false} />
-                                        </Button>
-                                    </Col>
-                                </Row>
-                            </div>
+                                    </div>
+                                )}
+                            </>
                         );
                     })}
                 </div>
             )}
             {modalCreateVisible && (
-                <ModalDetail
-                    visible={modalCreateVisible}
-                    closeModal={closeModal}
-                    title="Tambah List Item"
-                    dataInit={dataInit}
-                    // dataPayload={(e:any)=>createToDo(e)}
-                    dataPayload={(e: any) => createToDo(e)}
-                    loadingState={buttonLoading}
-                />
+                <ModalDetail visible={modalCreateVisible} closeModal={closeModal} title="Tambah List Item" dataInit={dataInit} dataPayload={(e: any) => createToDo(e)} loadingState={buttonLoading} />
             )}
             {modalEditVisible && (
-                <ModalDetail
-                    visible={modalCreateVisible}
-                    closeModal={closeModal}
-                    title="Edit Item"
-                    dataInit={dataInit}
-                    // dataPayload={(e:any)=>createToDo(e)}
-                    dataPayload={(e: any) => createToDo(e)}
-                    loadingState={buttonLoading}
-                />
+                <ModalDetail visible={modalEditVisible} closeModal={closeModal} title="Edit Item" dataInit={dataInit} dataPayload={(e: any) => editToDo(e)} loadingState={buttonLoading} />
             )}
+            {modalDeleteVisible && <ModalDelete title="activty" name={deleteName} closeModal={closeModal} visible={modalDeleteVisible} loadingState={buttonLoading} functConfirm={deleteToDo} />}
 
-            <ModalDelete title="activty" name={deleteName} closeModal={closeModal} visible={modalDeleteVisible} loadingState={buttonLoading} functConfirm={deleteToDo} />
-            <ModalAlert title="Item berhasil dihapus" closeModal={closeAlert} visible={alertVisible} />
+            <ModalAlert title="Item berhasil dihapus" closeModal={closeAlert} visible={modalAlertVisible} />
         </div>
     );
 }

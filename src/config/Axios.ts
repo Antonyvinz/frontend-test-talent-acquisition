@@ -15,7 +15,7 @@ const axiosRepository = {
     getActivityDetail: (id: any) => axiosInstance.get("/activity-groups/" + id),
     postToDoItem: (payload: any) => axiosInstance.post("/todo-items", payload),
     deleteToDoItem: (id: any) => axiosInstance.delete("/todo-items/" + id),
-    patchActiveToDoItem: (payload: any, id: any) => axiosInstance.patch("/todo-items/" + id, payload),
+    patchToDoItem: (payload: any, id: any) => axiosInstance.patch("/todo-items/" + id, payload),
 };
 
 export default axiosRepository;
