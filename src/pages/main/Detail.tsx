@@ -259,10 +259,10 @@ function DetailPage() {
                                     className="todo-Sort"
                                     data-cy="todo-sort-button"
                                     overlay={
-                                        <Menu defaultSelectedKeys={[sortIndex]} selectedKeys={[sortIndex]}>
+                                        <Menu data-cy="sort-selection" defaultSelectedKeys={[sortIndex]} selectedKeys={[sortIndex]}>
                                             {sortMethod?.map((item: any) => {
                                                 return (
-                                                    <Menu.Item key={item?.key} onClick={item?.funct} className="sort-selection" data-cy="sort-selection">
+                                                    <Menu.Item data-cy="todo-sort-button" key={item?.key} onClick={item?.funct} className="sort-selection">
                                                         <Row justify="space-between">
                                                             <Col>
                                                                 <Row gutter={15}>
