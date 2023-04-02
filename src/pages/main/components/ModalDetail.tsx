@@ -79,7 +79,7 @@ function ModalDetail(props: any) {
                     ]}
                 >
                     <Form layout="vertical">
-                        <Form.Item label="NAMA LIST ITEM" validateStatus={errors.title && touched.title ? "error" : ""}>
+                        <Form.Item data-cy="modal-add-name-input" label="NAMA LIST ITEM" validateStatus={errors.title && touched.title ? "error" : ""}>
                             <Input
                                 className="modal-add-name-input"
                                 data-cy="modal-add-name-input"
@@ -93,7 +93,7 @@ function ModalDetail(props: any) {
                                 }}
                             />
                         </Form.Item>
-                        <Form.Item label="PRIORITY" validateStatus={errors.priority && touched.priority ? "error" : ""}>
+                        <Form.Item data-cy="modal-add-priority-dropdown" label="PRIORITY" validateStatus={errors.priority && touched.priority ? "error" : ""}>
                             <Select
                                 className="modal-add-priority-dropdown"
                                 data-cy="modal-add-priority-dropdown"
