@@ -14,7 +14,7 @@ import iconUnfinished from "../../assets/icons/icon-unfinished.svg";
 import todoSortButton from "../../assets/icons/todo-sort-button.svg";
 import itemEmptyVector from "../../assets/images/todo-empty-state.svg";
 import axiosRepository from "../../config/Axios";
-import { ModalAlert, ModalDelete } from "../../config/Util";
+import { ModalInformation, ModalDelete } from "../../config/Util";
 import ModalDetail from "./components/ModalDetail";
 
 function DetailPage() {
@@ -257,11 +257,12 @@ function DetailPage() {
                             <Col>
                                 <Dropdown
                                     className="todo-Sort"
+                                    data-cy="todo-sort-button"
                                     overlay={
                                         <Menu defaultSelectedKeys={[sortIndex]} selectedKeys={[sortIndex]}>
                                             {sortMethod?.map((item: any) => {
                                                 return (
-                                                    <Menu.Item key={item?.key} onClick={item?.funct} data-cy="cy=sort-selection">
+                                                    <Menu.Item key={item?.key} onClick={item?.funct} className="sort-selection" data-cy="sort-selection">
                                                         <Row justify="space-between">
                                                             <Col>
                                                                 <Row gutter={15}>
@@ -285,7 +286,7 @@ function DetailPage() {
                                         </Menu>
                                     }
                                 >
-                                    <Image data-cy="todo-sort-button" src={todoSortButton} preview={false} />
+                                    <Image src={todoSortButton} preview={false} />
                                 </Dropdown>
                             </Col>
                             <Col>
@@ -294,7 +295,7 @@ function DetailPage() {
                                         openCreateModal();
                                     }}
                                     className="activity-add-button"
-                                    data-cy="activity-add-button"
+                                    data-cy="todo-add-button"
                                     icon={<PlusOutlined />}
                                 >
                                     Tambah
@@ -366,7 +367,7 @@ function DetailPage() {
                                             </Col>
                                             <Col>
                                                 <Button
-                                                    className="item-ghost-button"
+                                                    className="todo-item-delete-button"
                                                     data-cy="todo-item-delete-button"
                                                     onClick={() => {
                                                         setModalDeleteVisible(true);
@@ -391,9 +392,9 @@ function DetailPage() {
             {modalEditVisible && (
                 <ModalDetail visible={modalEditVisible} closeModal={closeModal} title="Edit Item" dataInit={dataInit} dataPayload={(e: any) => editToDo(e)} loadingState={buttonLoading} />
             )}
-            {modalDeleteVisible && <ModalDelete title="activty" name={deleteName} closeModal={closeModal} visible={modalDeleteVisible} loadingState={buttonLoading} functConfirm={deleteToDo} />}
+            <ModalDelete title="activty" name={deleteName} closeModal={closeModal} visible={modalDeleteVisible} loadingState={buttonLoading} functConfirm={deleteToDo} />
 
-            <ModalAlert title="Item berhasil dihapus" closeModal={closeAlert} visible={modalAlertVisible} />
+            <ModalInformation data-cy="modal-information" title="Item berhasil dihapus" closeModal={closeAlert} visible={modalAlertVisible} />
         </div>
     );
 }

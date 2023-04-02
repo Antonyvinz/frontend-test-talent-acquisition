@@ -6,7 +6,7 @@ export const AppHeader = () => {
     return (
         <div className="header-Background" data-cy="header-Background">
             <div className="header-title" data-cy="header-title">
-                to do list app
+                TO DO LIST APP
             </div>
         </div>
     );
@@ -40,7 +40,7 @@ export const ModalDelete = (props: any) => {
     );
 };
 
-export const ModalAlert = (props: any) => {
+export const ModalInformation = (props: any) => {
     const { visible, closeModal, title } = props;
     return (
         <Modal className="modal-information" data-cy="modal-information" open={visible} footer={null} closable={false} onCancel={closeModal} centered={true}>

@@ -72,6 +72,7 @@ function ModalDetail(props: any) {
                                 handleSubmit();
                             }}
                             className={values.title ? "modal-add-save-button" : "button-Disabled"}
+                            data-cy="modal-add-save-button"
                         >
                             {loadingState ? "Menyimpan" : "Simpan"}
                         </Button>,
@@ -80,6 +81,7 @@ function ModalDetail(props: any) {
                     <Form layout="vertical">
                         <Form.Item label="NAMA LIST ITEM" validateStatus={errors.title && touched.title ? "error" : ""}>
                             <Input
+                                data-cy="modal-add-name-input"
                                 placeholder="Tambahkan nama list item"
                                 value={values.title}
                                 name="title"

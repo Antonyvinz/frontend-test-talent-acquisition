@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import iconDelete from "../../assets/icons/icon-delete.svg";
 import activityEmptyVector from "../../assets/images/activity-empty-state.svg";
 import axiosRepository from "../../config/Axios";
-import { ModalAlert, ModalDelete } from "../../config/Util";
+import { ModalInformation, ModalDelete } from "../../config/Util";
 
 function DashboardPage() {
     const navigate = useNavigate();
@@ -135,8 +135,8 @@ function DashboardPage() {
                     />
                 </div>
             )}
-            <ModalDelete title="activty" name={deleteName} closeModal={closeModal} visible={modalVisible} loadingState={buttonLoading} functConfirm={deleteActivity} />
-            <ModalAlert title="Activity berhasil dihapus" closeModal={closeAlert} visible={alertVisible} />
+            <ModalDelete data-cy="modal-delete" title="activty" name={deleteName} closeModal={closeModal} visible={modalVisible} loadingState={buttonLoading} functConfirm={deleteActivity} />
+            <ModalInformation data-cy="modal-information" title="Activity berhasil dihapus" closeModal={closeAlert} visible={alertVisible} />
         </div>
     );
 }
