@@ -17,6 +17,7 @@ export const ModalDelete = (props: any) => {
     return (
         <Modal
             className="modal-delete"
+            data-cy="modal-delete-confirm-button"
             open={visible}
             onCancel={closeModal}
             closable={false}
@@ -42,7 +43,7 @@ export const ModalDelete = (props: any) => {
 export const ModalAlert = (props: any) => {
     const { visible, closeModal, title } = props;
     return (
-        <Modal className="modal-information" open={visible} footer={null} closable={false} onCancel={closeModal} centered={true}>
+        <Modal className="modal-information" data-cy="modal-information" open={visible} footer={null} closable={false} onCancel={closeModal} centered={true}>
             <div className="modal-information-title">
                 <Image className="modal-information-icon" src={iconInformation} preview={false} />
                 {title}

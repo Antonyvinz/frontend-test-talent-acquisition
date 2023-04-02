@@ -261,7 +261,7 @@ function DetailPage() {
                                         <Menu defaultSelectedKeys={[sortIndex]} selectedKeys={[sortIndex]}>
                                             {sortMethod?.map((item: any) => {
                                                 return (
-                                                    <Menu.Item key={item?.key} onClick={item?.funct}>
+                                                    <Menu.Item key={item?.key} onClick={item?.funct} data-cy="cy=sort-selection">
                                                         <Row justify="space-between">
                                                             <Col>
                                                                 <Row gutter={15}>
@@ -285,7 +285,7 @@ function DetailPage() {
                                         </Menu>
                                     }
                                 >
-                                    <Image src={todoSortButton} preview={false} />
+                                    <Image data-cy="todo-sort-button" src={todoSortButton} preview={false} />
                                 </Dropdown>
                             </Col>
                             <Col>
@@ -367,6 +367,7 @@ function DetailPage() {
                                             <Col>
                                                 <Button
                                                     className="item-ghost-button"
+                                                    data-cy="todo-item-delete-button"
                                                     onClick={() => {
                                                         setModalDeleteVisible(true);
                                                         setDeleteId(item?.id);
