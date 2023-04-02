@@ -394,7 +394,7 @@ function DetailPage() {
             )}
             <ModalDelete title="activty" name={deleteName} closeModal={closeModal} visible={modalDeleteVisible} loadingState={buttonLoading} functConfirm={deleteToDo} />
 
-            <ModalInformation data-cy="modal-information" title="Item berhasil dihapus" closeModal={closeAlert} visible={modalAlertVisible} />
+            <ModalInformation title="Item berhasil dihapus" closeModal={closeAlert} visible={modalAlertVisible} />
         </div>
     );
 }

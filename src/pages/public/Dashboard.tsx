@@ -135,8 +135,8 @@ function DashboardPage() {
                     />
                 </div>
             )}
-            <ModalDelete data-cy="modal-delete" title="activty" name={deleteName} closeModal={closeModal} visible={modalVisible} loadingState={buttonLoading} functConfirm={deleteActivity} />
-            <ModalInformation data-cy="modal-information" title="Activity berhasil dihapus" closeModal={closeAlert} visible={alertVisible} />
+            <ModalDelete title="activty" name={deleteName} closeModal={closeModal} visible={modalVisible} loadingState={buttonLoading} functConfirm={deleteActivity} />
+            <ModalInformation title="Activity berhasil dihapus" closeModal={closeAlert} visible={alertVisible} />
         </div>
     );
 }

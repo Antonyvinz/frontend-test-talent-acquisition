@@ -43,7 +43,7 @@ export const ModalDelete = (props: any) => {
 export const ModalInformation = (props: any) => {
     const { visible, closeModal, title } = props;
     return (
-        <Modal className="modal-information" data-cy="modal-information" open={visible} footer={null} closable={false} onCancel={closeModal} centered={true}>
+        <Modal className="modal-information" data-cy="modal-information" open={visible} footer={null} onCancel={closeModal} centered={true}>
             <div className="modal-information-title">
                 <Image className="modal-information-icon" src={iconInformation} preview={false} />
                 {title}
