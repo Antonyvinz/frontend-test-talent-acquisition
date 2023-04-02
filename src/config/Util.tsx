@@ -4,11 +4,11 @@ import iconInformation from "../assets/icons/icon-modal-information.svg";
 
 export const AppHeader = () => {
     return (
-        <div className="header-Background" data-cy="header-Background">
-            <div className="header-title" data-cy="header-title">
-                TO DO LIST APP
-            </div>
+        // <div className="header-Background" data-cy="header-Background">
+        <div className="header-title" data-cy="header-title">
+            TO DO LIST APP
         </div>
+        // </div>
     );
 };
 
@@ -17,10 +17,10 @@ export const ModalDelete = (props: any) => {
     return (
         <Modal
             className="modal-delete"
-            data-cy="modal-delete-confirm-button"
+            data-cy="modal-delete"
             open={visible}
             onCancel={closeModal}
-            closable={false}
+            // closable={false}
             footer={[
                 <Button onClick={closeModal} className="modal-delete-cancel-button" data-cy="modal-delete-cancel-button">
                     Batal
