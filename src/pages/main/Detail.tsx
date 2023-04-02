@@ -387,7 +387,15 @@ function DetailPage() {
                 </div>
             )}
             {modalCreateVisible && (
-                <ModalDetail visible={modalCreateVisible} closeModal={closeModal} title="Tambah List Item" dataInit={dataInit} dataPayload={(e: any) => createToDo(e)} loadingState={buttonLoading} />
+                <ModalDetail
+                    data-cy="modal-add"
+                    visible={modalCreateVisible}
+                    closeModal={closeModal}
+                    title="Tambah List Item"
+                    dataInit={dataInit}
+                    dataPayload={(e: any) => createToDo(e)}
+                    loadingState={buttonLoading}
+                />
             )}
             {modalEditVisible && (
                 <ModalDetail visible={modalEditVisible} closeModal={closeModal} title="Edit Item" dataInit={dataInit} dataPayload={(e: any) => editToDo(e)} loadingState={buttonLoading} />

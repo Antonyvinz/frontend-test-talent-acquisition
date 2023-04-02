@@ -50,10 +50,10 @@ function ModalDetail(props: any) {
                 title: dataInit.title,
             }}
             validationSchema={yup.object().shape({
-                // title: yup.string().required("Wajib Diisi"),
+                title: yup.string().required("Wajib Diisi"),
             })}
-            onSubmit={(values) => {
-                dataPayload(values);
+            onSubmit={(values, isValid) => {
+                if (isValid) dataPayload(values);
             }}
         >
             {({ values, errors, touched, handleBlur, handleChange, handleSubmit, setFieldValue, isSubmitting, isValid }) => (
@@ -67,7 +67,7 @@ function ModalDetail(props: any) {
                     footer={[
                         <Button
                             loading={loadingState}
-                            disabled={values.title ? false : true}
+                            // disabled={values.title ? false : true}
                             onClick={() => {
                                 handleSubmit();
                             }}
@@ -82,7 +82,7 @@ function ModalDetail(props: any) {
                         <Form.Item data-cy="modal-add-name-input" label="NAMA LIST ITEM" validateStatus={errors.title && touched.title ? "error" : ""}>
                             <Input
                                 className="modal-add-name-input"
-                                data-cy="modal-add-name-input"
+                                // data-cy="modal-add-name-input"
                                 placeholder="Tambahkan nama list item"
                                 value={values.title}
                                 name="title"
@@ -96,7 +96,7 @@ function ModalDetail(props: any) {
                         <Form.Item data-cy="modal-add-priority-dropdown" label="PRIORITY" validateStatus={errors.priority && touched.priority ? "error" : ""}>
                             <Select
                                 className="modal-add-priority-dropdown"
-                                data-cy="modal-add-priority-dropdown"
+                                // data-cy="modal-add-priority-dropdown"
                                 placeholder="Pilih Priority"
                                 // defaultValue={0}
                                 onChange={(e) => {
