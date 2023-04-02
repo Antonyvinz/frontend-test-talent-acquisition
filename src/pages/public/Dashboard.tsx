@@ -101,7 +101,7 @@ function DashboardPage() {
                                     <Skeleton.Input className="activity-card-skeleton" active />
                                 ) : (
                                     <List.Item>
-                                        <div className="activity-card" key={item?.id}>
+                                        <div className="activity-item" data-cy="activity-item" key={item?.id}>
                                             <div className="activity-item-title" data-cy="activity-item-title" onClick={() => openDetail(item?.id)}>
                                                 {item?.title}
                                             </div>
@@ -115,6 +115,7 @@ function DashboardPage() {
                                                     <Col>
                                                         <Button
                                                             className="activity-item-delete-button"
+                                                            data-cy="activity-item-delete-button"
                                                             onClick={() => {
                                                                 openModal();
                                                                 setDeleteId(item?.id);

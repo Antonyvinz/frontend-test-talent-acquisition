@@ -5,7 +5,7 @@ import iconInformation from "../assets/icons/icon-modal-information.svg";
 export const AppHeader = () => {
     return (
         <div className="header-Background" data-cy="header-Background">
-            <div className="header-Title" data-cy="header-Title">
+            <div className="header-title" data-cy="header-title">
                 to do list app
             </div>
         </div>
