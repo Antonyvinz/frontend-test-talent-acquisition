@@ -67,7 +67,7 @@ function ModalDetail(props: any) {
                     footer={[
                         <Button
                             loading={loadingState}
-                            // disabled={values.title ? false : true}
+                            disabled={values.title ? false : true}
                             onClick={() => {
                                 handleSubmit();
                             }}
@@ -104,9 +104,9 @@ function ModalDetail(props: any) {
                                 }}
                                 value={values.priority}
                             >
-                                {itemPriority?.map((item: any) => {
+                                {itemPriority?.map((item: any, index: any) => {
                                     return (
-                                        <Select.Option value={item?.value} key={item?.value}>
+                                        <Select.Option className="modal-add-priority-item" data-cy="modal-add-priority-item" value={item?.value} key={index}>
                                             <Row justify="space-between">
                                                 <Col>
                                                     <Row align="middle" gutter={20}>
