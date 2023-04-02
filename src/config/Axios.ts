@@ -11,6 +11,7 @@ const axiosRepository = {
         }),
     postActivityGroups: (payload: any) => axiosInstance.post("/activity-groups", payload),
     deleteActivityGroups: (id: any) => axiosInstance.delete("/activity-groups/" + id),
+    patchActivityGroups: (payload: any, id: any) => axiosInstance.patch("/activity-groups/" + id, payload),
     getActivityDetail: (id: any) => axiosInstance.get("/activity-groups/" + id),
 };
 

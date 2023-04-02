@@ -1,13 +1,15 @@
-import { DeleteFilled, PlusOutlined } from "@ant-design/icons";
-import { Button, Card, Col, Image, List, Row, Skeleton } from "antd";
-import activityEmptyVector from "../../assets/images/activity-empty-state.svg";
-import iconDelete from "../../assets/icons/icon-delete.svg";
-import { useEffect, useState } from "react";
+import { PlusOutlined } from "@ant-design/icons";
+import { Button, Col, Image, List, Row, Skeleton } from "antd";
 import moment from "moment";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import iconDelete from "../../assets/icons/icon-delete.svg";
+import activityEmptyVector from "../../assets/images/activity-empty-state.svg";
 import axiosRepository from "../../config/Axios";
 import { ModalAlert, ModalDelete } from "../../config/Util";
 
 function DashboardPage() {
+    const navigate = useNavigate();
     const [modalVisible, setModalVisible] = useState(false);
     const [alertVisible, setAlertVisible] = useState(false);
     const [listActivity, setListActivity] = useState([] as any);
@@ -55,6 +57,10 @@ function DashboardPage() {
         setAlertVisible(false);
     };
 
+    const openDetail = (id: any) => {
+        navigate("/activity-detail/" + id);
+    };
+
     const deleteActivity = async () => {
         setButtonLoading(true);
         await axiosRepository.deleteActivityGroups(deleteId).then(async () => {
@@ -96,10 +102,10 @@ function DashboardPage() {
                                 ) : (
                                     <List.Item>
                                         <div className="activity-card" key={item?.id}>
-                                            <div className="activity-item-title" data-cy="activity--title">
+                                            <div className="activity-item-title" data-cy="activity-item-title" onClick={() => openDetail(item?.id)}>
                                                 {item?.title}
                                             </div>
-                                            <div className="activity-item-extra">
+                                            <div className="activity-item-footer">
                                                 <Row justify="space-between" align="middle">
                                                     <Col>
                                                         <div className="activity-item-date" data-cy="activity-item-date">
