@@ -1,15 +1,15 @@
 import { LeftOutlined, PlusOutlined } from "@ant-design/icons";
-import { Button, Checkbox, Col, Dropdown, Image, Input, Menu, MenuProps, Row, Skeleton } from "antd";
+import { Button, Checkbox, Col, Image, Input, MenuProps, Row, Skeleton } from "antd";
+import { Formik } from "formik";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import axiosRepository from "../../config/Axios";
-import itemEmptyVector from "../../assets/images/todo-empty-state.svg";
-import iconEdit from "../../assets/icons/icon-edit.svg";
-import { Formik } from "formik";
 import * as yup from "yup";
-import ModalDetail from "./components/ModalDetail";
 import iconDelete from "../../assets/icons/icon-delete.svg";
-import { ModalDelete, ModalAlert } from "../../config/Util";
+import iconEdit from "../../assets/icons/icon-edit.svg";
+import itemEmptyVector from "../../assets/images/todo-empty-state.svg";
+import axiosRepository from "../../config/Axios";
+import { ModalAlert, ModalDelete } from "../../config/Util";
+import ModalDetail from "./components/ModalDetail";
 
 const items: MenuProps["items"] = [
     {
@@ -42,7 +42,6 @@ function DetailPage() {
     const [modalDeleteVisible, setModalDeleteVisible] = useState(false);
     const [modalAlertVisible, setModalAlertVisible] = useState(false);
     const [editMode, setEditMode] = useState(false);
-    const [toDoTitle, setToDoTitle] = useState("");
     const [deleteId, setDeleteId] = useState(0);
     const [deleteName, setDeleteName] = useState("");
     const [contentLoading, setContentLoading] = useState(false);
@@ -58,7 +57,6 @@ function DetailPage() {
         axiosRepository.getActivityDetail(activityID).then((res) => {
             console.log(res.data);
             setData(res?.data);
-            setToDoTitle(res?.data.title);
             setListItem(res?.data?.todo_items);
             setContentLoading(false);
             setButtonLoading(false);
@@ -269,7 +267,7 @@ function DetailPage() {
                                                                 checkItem(e.target.checked, item);
                                                             }}
                                                             value={item.is_active === 0 ? true : false}
-                                                            // checked={item.is_active === 0 ? true : false}
+                                                            checked={item.is_active === 0 ? true : false}
                                                         />
                                                     </Col>
                                                     <Col>

@@ -1,5 +1,5 @@
 import { CheckOutlined } from "@ant-design/icons";
-import { Button, Col, Form, Input, Modal, Row, Select, Space } from "antd";
+import { Button, Col, Form, Input, Modal, Row, Select } from "antd";
 import { Formik } from "formik";
 import * as yup from "yup";
 
@@ -120,13 +120,13 @@ function ModalDetail(props: any) {
                                                         <Col>{item?.title}</Col>
                                                     </Row>
                                                 </Col>
-                                                {/* {item?.value === values.priority ? (
+                                                {item?.value === values.priority ? (
                                                     <Col>
-                                                        <CheckOutlined />
+                                                        <CheckOutlined className="select-checked" />
                                                     </Col>
                                                 ) : (
                                                     <></>
-                                                )} */}
+                                                )}
                                             </Row>
                                         </Select.Option>
                                     );
