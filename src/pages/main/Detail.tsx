@@ -1,34 +1,21 @@
-import { LeftOutlined, PlusOutlined } from "@ant-design/icons";
-import { Button, Checkbox, Col, Image, Input, MenuProps, Row, Skeleton } from "antd";
+import { CheckOutlined, LeftOutlined, PlusOutlined } from "@ant-design/icons";
+import { Button, Checkbox, Col, Dropdown, Image, Input, Menu, Row, Skeleton } from "antd";
 import { Formik } from "formik";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import * as yup from "yup";
+import iconAscending from "../../assets/icons/icon-ascending.svg";
 import iconDelete from "../../assets/icons/icon-delete.svg";
+import iconDescending from "../../assets/icons/icon-descending.svg";
 import iconEdit from "../../assets/icons/icon-edit.svg";
+import iconLatest from "../../assets/icons/icon-latest.svg";
+import iconOldest from "../../assets/icons/icon-oldest.svg";
+import iconUnfinished from "../../assets/icons/icon-unfinished.svg";
+import todoSortButton from "../../assets/icons/todo-sort-button.svg";
 import itemEmptyVector from "../../assets/images/todo-empty-state.svg";
 import axiosRepository from "../../config/Axios";
 import { ModalAlert, ModalDelete } from "../../config/Util";
 import ModalDetail from "./components/ModalDetail";
-
-const items: MenuProps["items"] = [
-    {
-        // icon: <></>,
-        label: <a href="https://www.antgroup.com">1st menu item</a>,
-        key: "0",
-    },
-    {
-        label: <a href="https://www.aliyun.com">2nd menu item</a>,
-        key: "1",
-    },
-    {
-        type: "divider",
-    },
-    {
-        label: "3rd menu item",
-        key: "3",
-    },
-];
 
 function DetailPage() {
     const navigate = useNavigate();
@@ -46,6 +33,7 @@ function DetailPage() {
     const [deleteName, setDeleteName] = useState("");
     const [contentLoading, setContentLoading] = useState(false);
     const [buttonLoading, setButtonLoading] = useState(false);
+    const [sortIndex, setSortIndex] = useState("1");
 
     useEffect(() => {
         getData();
@@ -117,8 +105,6 @@ function DetailPage() {
         });
     };
     const editToDo = (value: any) => {
-        // console.log(value);
-        // console.log(editId);
         let payload = {
             is_active: value?.is_active,
             priority: value?.priority,
@@ -128,6 +114,58 @@ function DetailPage() {
             getData();
         });
     };
+
+    const sortMethod = [
+        {
+            key: "1",
+            icon: iconLatest,
+            title: "Terbaru",
+            funct: () => {
+                setSortIndex("1");
+                setListItem(listItem.sort((a: any, b: any) => b.id - a.id));
+                console.log(listItem);
+            },
+        },
+        {
+            key: "2",
+            icon: iconOldest,
+            title: "Terlama",
+            funct: () => {
+                setSortIndex("2");
+                setListItem(listItem.sort((a: any, b: any) => a.id - b.id));
+                console.log(listItem);
+            },
+        },
+        {
+            key: "3",
+            icon: iconAscending,
+            title: "A-Z",
+            funct: () => {
+                setSortIndex("3");
+                setListItem(listItem.sort((a: any, b: any) => a.title.localeCompare(b.title)));
+            },
+        },
+        {
+            key: "4",
+            icon: iconDescending,
+            title: "Z-A",
+            funct: () => {
+                setSortIndex("4");
+                setListItem(listItem.sort((a: any, b: any) => b.title.localeCompare(a.title)));
+                console.log(listItem);
+            },
+        },
+        {
+            key: "5",
+            icon: iconUnfinished,
+            title: "Belum Selesai",
+            funct: () => {
+                setSortIndex("5");
+                setListItem(listItem.sort((a: any, b: any) => b.is_active - a.is_active));
+                console.log(listItem);
+            },
+        },
+    ];
 
     const priorityColor = (value: any) => {
         if (value === "very-high") {
@@ -215,14 +253,40 @@ function DetailPage() {
                         </Row>
                     </Col>
                     <Col>
-                        <Row>
+                        <Row gutter={10}>
                             <Col>
-                                {/* <Dropdown
-                                // menu={{}}
-                                // trigger={["click"]}
+                                <Dropdown
+                                    className="todo-Sort"
+                                    overlay={
+                                        <Menu defaultSelectedKeys={[sortIndex]} selectedKeys={[sortIndex]}>
+                                            {sortMethod?.map((item: any) => {
+                                                return (
+                                                    <Menu.Item key={item?.key} onClick={item?.funct}>
+                                                        <Row justify="space-between">
+                                                            <Col>
+                                                                <Row gutter={15}>
+                                                                    <Col>
+                                                                        <Image src={item?.icon} preview={false} />
+                                                                    </Col>
+                                                                    <Col>{item.title}</Col>
+                                                                </Row>
+                                                            </Col>
+                                                            {item?.key === sortIndex ? (
+                                                                <Col>
+                                                                    <CheckOutlined />
+                                                                </Col>
+                                                            ) : (
+                                                                <></>
+                                                            )}
+                                                        </Row>
+                                                    </Menu.Item>
+                                                );
+                                            })}
+                                        </Menu>
+                                    }
                                 >
-                                    Sort
-                                </Dropdown> */}
+                                    <Image src={todoSortButton} preview={false} />
+                                </Dropdown>
                             </Col>
                             <Col>
                                 <Button
