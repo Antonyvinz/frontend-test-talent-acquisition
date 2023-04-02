@@ -4,11 +4,11 @@ import iconInformation from "../assets/icons/icon-modal-information.svg";
 
 export const AppHeader = () => {
     return (
-        // <div className="header-Background" data-cy="header-Background">
-        <div className="header-title" data-cy="header-title">
-            TO DO LIST APP
+        <div className="header-Background" data-cy="header-Background">
+            <div className="header-title" data-cy="header-title">
+                TO DO LIST APP
+            </div>
         </div>
-        // </div>
     );
 };
 

@@ -294,7 +294,7 @@ function DetailPage() {
                                     onClick={() => {
                                         openCreateModal();
                                     }}
-                                    className="activity-add-button"
+                                    className="todo-add-button"
                                     data-cy="todo-add-button"
                                     icon={<PlusOutlined />}
                                 >
