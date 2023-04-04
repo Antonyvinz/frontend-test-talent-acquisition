@@ -255,7 +255,7 @@ function DetailPage() {
                     <Col>
                         <Row gutter={10}>
                             <Col>
-                                <Select className="todo-Sort" data-cy="todo-sort-button">
+                                {/* <Select className="todo-Sort" data-cy="todo-sort-button">
                                     {sortMethod?.map((item: any, index) => {
                                         return (
                                             <Select.Option value={item?.value} key={index} data-cy="todo-sort-button">
@@ -279,10 +279,11 @@ function DetailPage() {
                                             </Select.Option>
                                         );
                                     })}
-                                </Select>
-                                {/* <Dropdown
+                                </Select> */}
+                                <Dropdown
                                     className="todo-Sort"
                                     data-cy="todo-sort-button"
+                                    trigger={["click"]}
                                     overlay={
                                         <Menu data-cy="sort-selection" defaultSelectedKeys={[sortIndex]} selectedKeys={[sortIndex]}>
                                             {sortMethod?.map((item: any) => {
@@ -312,7 +313,7 @@ function DetailPage() {
                                     }
                                 >
                                     <Image src={todoSortButton} preview={false} />
-                                </Dropdown> */}
+                                </Dropdown>
                             </Col>
                             <Col>
                                 <Button
