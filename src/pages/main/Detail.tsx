@@ -256,8 +256,6 @@ function DetailPage() {
                         <Row gutter={10}>
                             <Col>
                                 <Dropdown
-                                    className="todo-Sort"
-                                    data-cy="todo-sort-button"
                                     trigger={["click"]}
                                     overlay={
                                         <Menu defaultSelectedKeys={[sortIndex]} selectedKeys={[sortIndex]}>
@@ -287,7 +285,9 @@ function DetailPage() {
                                         </Menu>
                                     }
                                 >
-                                    <Image src={todoSortButton} preview={false} />
+                                    <Button className="todo-Sort" data-cy="todo-sort-button" type="link">
+                                        <Image src={todoSortButton} preview={false} />
+                                    </Button>
                                 </Dropdown>
                             </Col>
                             <Col>
