@@ -261,7 +261,7 @@ function DetailPage() {
                                         <Menu defaultSelectedKeys={[sortIndex]} selectedKeys={[sortIndex]}>
                                             {sortMethod?.map((item: any) => {
                                                 return (
-                                                    <Menu.Item key={item?.key} onClick={item?.funct} className="sort-selection">
+                                                    <Menu.Item key={item?.key} onClick={item?.funct} className="sort-selection" data-cy="sort-selection">
                                                         <Row justify="space-between">
                                                             <Col>
                                                                 <Row gutter={15}>
