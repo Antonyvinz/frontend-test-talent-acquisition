@@ -106,31 +106,33 @@ function ModalDetail(props: any) {
                             >
                                 {itemPriority?.map((item: any, index: any) => {
                                     return (
-                                        <Select.Option className="modal-add-priority-item" data-cy="modal-add-priority-item" value={item?.value} key={index}>
-                                            <Row justify="space-between">
-                                                <Col>
-                                                    <Row align="middle" gutter={20}>
-                                                        <Col>
-                                                            <div
-                                                                style={{
-                                                                    height: 12,
-                                                                    width: 12,
-                                                                    backgroundColor: item.color,
-                                                                    borderRadius: 12,
-                                                                }}
-                                                            />
-                                                        </Col>
-                                                        <Col>{item?.title}</Col>
-                                                    </Row>
-                                                </Col>
-                                                {item?.value === values.priority ? (
+                                        <Select.Option value={item?.value} key={index}>
+                                            <div className="modal-add-priority-item" data-cy="modal-add-priority-item">
+                                                <Row justify="space-between">
                                                     <Col>
-                                                        <CheckOutlined className="select-checked" />
+                                                        <Row align="middle" gutter={20}>
+                                                            <Col>
+                                                                <div
+                                                                    style={{
+                                                                        height: 12,
+                                                                        width: 12,
+                                                                        backgroundColor: item.color,
+                                                                        borderRadius: 12,
+                                                                    }}
+                                                                />
+                                                            </Col>
+                                                            <Col>{item?.title}</Col>
+                                                        </Row>
                                                     </Col>
-                                                ) : (
-                                                    <></>
-                                                )}
-                                            </Row>
+                                                    {item?.value === values.priority ? (
+                                                        <Col>
+                                                            <CheckOutlined className="select-checked" />
+                                                        </Col>
+                                                    ) : (
+                                                        <></>
+                                                    )}
+                                                </Row>
+                                            </div>
                                         </Select.Option>
                                     );
                                 })}

@@ -1,5 +1,5 @@
 import { CheckOutlined, LeftOutlined, PlusOutlined } from "@ant-design/icons";
-import { Button, Checkbox, Col, Dropdown, Image, Input, Menu, Row, Select, Skeleton } from "antd";
+import { Button, Checkbox, Col, Dropdown, Image, Input, Menu, Row, Skeleton } from "antd";
 import { Formik } from "formik";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
@@ -14,7 +14,7 @@ import iconUnfinished from "../../assets/icons/icon-unfinished.svg";
 import todoSortButton from "../../assets/icons/todo-sort-button.svg";
 import itemEmptyVector from "../../assets/images/todo-empty-state.svg";
 import axiosRepository from "../../config/Axios";
-import { ModalInformation, ModalDelete } from "../../config/Util";
+import { ModalDelete, ModalInformation } from "../../config/Util";
 import ModalDetail from "./components/ModalDetail";
 
 function DetailPage() {
@@ -255,40 +255,15 @@ function DetailPage() {
                     <Col>
                         <Row gutter={10}>
                             <Col>
-                                {/* <Select className="todo-Sort" data-cy="todo-sort-button">
-                                    {sortMethod?.map((item: any, index) => {
-                                        return (
-                                            <Select.Option value={item?.value} key={index} data-cy="todo-sort-button">
-                                                <Row justify="space-between">
-                                                    <Col>
-                                                        <Row gutter={15}>
-                                                            <Col>
-                                                                <Image src={item?.icon} preview={false} />
-                                                            </Col>
-                                                            <Col>{item.title}</Col>
-                                                        </Row>
-                                                    </Col>
-                                                    {item?.key === sortIndex ? (
-                                                        <Col>
-                                                            <CheckOutlined />
-                                                        </Col>
-                                                    ) : (
-                                                        <></>
-                                                    )}
-                                                </Row>
-                                            </Select.Option>
-                                        );
-                                    })}
-                                </Select> */}
                                 <Dropdown
                                     className="todo-Sort"
                                     data-cy="todo-sort-button"
                                     trigger={["click"]}
                                     overlay={
-                                        <Menu data-cy="sort-selection" defaultSelectedKeys={[sortIndex]} selectedKeys={[sortIndex]}>
+                                        <Menu defaultSelectedKeys={[sortIndex]} selectedKeys={[sortIndex]}>
                                             {sortMethod?.map((item: any) => {
                                                 return (
-                                                    <Menu.Item data-cy="todo-sort-button" key={item?.key} onClick={item?.funct} className="sort-selection">
+                                                    <Menu.Item key={item?.key} onClick={item?.funct} className="sort-selection">
                                                         <Row justify="space-between">
                                                             <Col>
                                                                 <Row gutter={15}>
