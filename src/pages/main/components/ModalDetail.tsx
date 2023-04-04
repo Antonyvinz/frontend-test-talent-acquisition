@@ -78,7 +78,7 @@ function ModalDetail(props: any) {
                         </Button>,
                     ]}
                 >
-                    <Form layout="vertical">
+                    <Form layout="vertical" data-cy="modal-add">
                         <Form.Item data-cy="modal-add-name-input" label="NAMA LIST ITEM" validateStatus={errors.title && touched.title ? "error" : ""}>
                             <Input
                                 className="modal-add-name-input"
