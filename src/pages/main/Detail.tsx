@@ -154,7 +154,7 @@ function DetailPage() {
             title: "Z-A",
             funct: () => {
                 setSortIndex("4");
-                setListItem(listItem.sort((a: any, b: any) => b.title - a.title));
+                setListItem(listItem.sort((a: any, b: any) => a.title - b.title));
                 // setListItem(listItem.sort((a: any, b: any) => b.title.localeCompare(a.title)));
                 console.log(listItem);
             },
@@ -165,7 +165,7 @@ function DetailPage() {
             title: "Belum Selesai",
             funct: () => {
                 setSortIndex("5");
-                setListItem(listItem.sort((a: any, b: any) => b.is_active - a.is_active));
+                setListItem(listItem.sort((a: any, b: any) => a.is_active - b.is_active));
                 console.log(listItem);
             },
         },
