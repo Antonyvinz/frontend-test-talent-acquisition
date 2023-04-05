@@ -88,9 +88,9 @@ function ModalDetail(props: any) {
                                 name="title"
                                 onChange={handleChange}
                                 onBlur={handleBlur}
-                                onPressEnter={() => {
-                                    handleSubmit();
-                                }}
+                                // onPressEnter={() => {
+                                //     handleSubmit();
+                                // }}
                             />
                         </Form.Item>
                         <Form.Item data-cy="modal-add-priority-dropdown" label="PRIORITY" validateStatus={errors.priority && touched.priority ? "error" : ""}>
@@ -106,8 +106,12 @@ function ModalDetail(props: any) {
                             >
                                 {itemPriority?.map((item: any, index: any) => {
                                     return (
-                                        <Select.Option value={item?.value} key={index}>
-                                            <div data-cy="modal-add-priority-item" key={index}>
+                                        <Select.Option
+                                            // data-cy="modal-add-priority-item"
+                                            value={item?.value}
+                                            key={index}
+                                        >
+                                            <div key={index}>
                                                 <Row justify="space-between">
                                                     <Col>
                                                         <Row align="middle" gutter={20}>

@@ -224,7 +224,7 @@ function DetailPage() {
                                                 // value={data?.title}
                                                 // value={toDoTitle}
                                                 value={values.title}
-                                                onAbort={() => handleSubmit}
+                                                // onAbort={() => handleSubmit}
                                                 name="title"
                                                 bordered={false}
                                                 onChange={handleChange}
@@ -260,51 +260,55 @@ function DetailPage() {
                     <Col>
                         <Row gutter={10}>
                             <Col>
-                                <Dropdown
-                                    trigger={["click"]}
-                                    overlay={
-                                        <Menu
-                                            // data-cy="sort-selection"
-                                            defaultSelectedKeys={[sortIndex]}
-                                            selectedKeys={[sortIndex]}
-                                        >
-                                            {sortMethod?.map((item: any, index: any) => {
-                                                return (
-                                                    <Menu.Item
-                                                        key={item?.key}
-                                                        // key={index}
-                                                        onClick={item?.funct}
-                                                        className="sort-selection"
-                                                        data-cy="sort-selection"
-                                                    >
-                                                        <div data-cy={item?.key === sortIndex ? "sort-selection-selected" : "false"}></div>
-                                                        <Row justify="space-between">
-                                                            <Col>
-                                                                <Row gutter={15}>
-                                                                    <Col>
-                                                                        <Image src={item?.icon} preview={false} />
-                                                                    </Col>
-                                                                    <Col>{item.title}</Col>
-                                                                </Row>
-                                                            </Col>
-                                                            {item?.key === sortIndex ? (
+                                {listItem.length === 0 ? (
+                                    <></>
+                                ) : (
+                                    <Dropdown
+                                        trigger={["click"]}
+                                        overlay={
+                                            <Menu
+                                                // data-cy="sort-selection"
+                                                defaultSelectedKeys={[sortIndex]}
+                                                selectedKeys={[sortIndex]}
+                                            >
+                                                {sortMethod?.map((item: any, index: any) => {
+                                                    return (
+                                                        <Menu.Item
+                                                            key={item?.key}
+                                                            // key={index}
+                                                            onClick={item?.funct}
+                                                            className="sort-selection"
+                                                            data-cy="sort-selection"
+                                                        >
+                                                            <div data-cy={item?.key === sortIndex ? "sort-selection-selected" : "false"}></div>
+                                                            <Row justify="space-between">
                                                                 <Col>
-                                                                    <CheckOutlined />
+                                                                    <Row gutter={15}>
+                                                                        <Col>
+                                                                            <Image src={item?.icon} preview={false} />
+                                                                        </Col>
+                                                                        <Col>{item.title}</Col>
+                                                                    </Row>
                                                                 </Col>
-                                                            ) : (
-                                                                <></>
-                                                            )}
-                                                        </Row>
-                                                    </Menu.Item>
-                                                );
-                                            })}
-                                        </Menu>
-                                    }
-                                >
-                                    <Button className="todo-Sort" data-cy="todo-sort-button" type="link">
-                                        <Image src={todoSortButton} preview={false} />
-                                    </Button>
-                                </Dropdown>
+                                                                {item?.key === sortIndex ? (
+                                                                    <Col>
+                                                                        <CheckOutlined />
+                                                                    </Col>
+                                                                ) : (
+                                                                    <></>
+                                                                )}
+                                                            </Row>
+                                                        </Menu.Item>
+                                                    );
+                                                })}
+                                            </Menu>
+                                        }
+                                    >
+                                        <Button className="todo-Sort" data-cy="todo-sort-button" type="link">
+                                            <Image src={todoSortButton} preview={false} />
+                                        </Button>
+                                    </Dropdown>
+                                )}
                             </Col>
                             <Col>
                                 <Button
