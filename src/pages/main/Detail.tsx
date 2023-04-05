@@ -144,7 +144,8 @@ function DetailPage() {
             title: "A-Z",
             funct: () => {
                 setSortIndex("3");
-                setListItem(listItem.sort((a: any, b: any) => a.title.localeCompare(b.title)));
+                setListItem(listItem.sort((a: any, b: any) => a.title - b.title));
+                // setListItem(listItem.sort((a: any, b: any) => a.title.localeCompare(b.title)));
             },
         },
         {
@@ -153,7 +154,8 @@ function DetailPage() {
             title: "Z-A",
             funct: () => {
                 setSortIndex("4");
-                setListItem(listItem.sort((a: any, b: any) => b.title.localeCompare(a.title)));
+                setListItem(listItem.sort((a: any, b: any) => b.title - a.title));
+                // setListItem(listItem.sort((a: any, b: any) => b.title.localeCompare(a.title)));
                 console.log(listItem);
             },
         },
@@ -222,6 +224,7 @@ function DetailPage() {
                                                 // value={data?.title}
                                                 // value={toDoTitle}
                                                 value={values.title}
+                                                onAbort={() => handleSubmit}
                                                 name="title"
                                                 bordered={false}
                                                 onChange={handleChange}
@@ -265,10 +268,11 @@ function DetailPage() {
                                             defaultSelectedKeys={[sortIndex]}
                                             selectedKeys={[sortIndex]}
                                         >
-                                            {sortMethod?.map((item: any) => {
+                                            {sortMethod?.map((item: any, index: any) => {
                                                 return (
                                                     <Menu.Item
-                                                        key={item?.key}
+                                                        // key={item?.key}
+                                                        key={index}
                                                         onClick={item?.funct}
                                                         className="sort-selection"
                                                         data-cy={item?.key === sortIndex ? "sort-selection-selected" : "sort-selection"}
