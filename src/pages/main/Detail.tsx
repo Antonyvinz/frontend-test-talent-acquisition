@@ -142,7 +142,8 @@ function DetailPage() {
             title: "A-Z",
             funct: () => {
                 setSortIndex("3");
-                setListItem(listItem.sort((a: any, b: any) => a.title.localeCompare(b.title)));
+                // setListItem(listItem.sort((a: any, b: any) => a.title.localeCompare(b.title)));
+                setListItem(listItem.sort((a: any, b: any) => a.title - b.title));
             },
         },
         {
@@ -151,7 +152,8 @@ function DetailPage() {
             title: "Z-A",
             funct: () => {
                 setSortIndex("4");
-                setListItem(listItem.sort((a: any, b: any) => b.title.localeCompare(a.title)));
+                // setListItem(listItem.sort((a: any, b: any) => b.title.localeCompare(a.title)));
+                setListItem(listItem.sort((a: any, b: any) => b.title - a.title));
                 console.log(listItem);
             },
         },
