@@ -98,6 +98,7 @@ function ModalDetail(props: any) {
                                 className="modal-add-priority-dropdown"
                                 // data-cy="modal-add-priority-dropdown"
                                 placeholder="Pilih Priority"
+                                data-cy="modal-add-priority-item"
                                 // defaultValue={0}
                                 onChange={(e) => {
                                     setFieldValue("priority", e);
@@ -106,8 +107,15 @@ function ModalDetail(props: any) {
                             >
                                 {itemPriority?.map((item: any, index: any) => {
                                     return (
-                                        <Select.Option data-cy="modal-add-priority-item" value={item?.value} key={index}>
-                                            <div key={index} data-cy={"modal-add-priority-item-" + index}>
+                                        <Select.Option
+                                            // data-cy="modal-add-priority-item"
+                                            value={item?.value}
+                                            key={index}
+                                        >
+                                            <div
+                                                key={index}
+                                                // data-cy={"modal-add-priority-item-" + index}
+                                            >
                                                 <Row justify="space-between">
                                                     <Col>
                                                         <Row align="middle" gutter={20}>
