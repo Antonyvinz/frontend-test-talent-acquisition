@@ -258,10 +258,10 @@ function DetailPage() {
                                 <Dropdown
                                     trigger={["click"]}
                                     overlay={
-                                        <Menu defaultSelectedKeys={[sortIndex]} selectedKeys={[sortIndex]}>
+                                        <Menu data-cy="sort-selection" defaultSelectedKeys={[sortIndex]} selectedKeys={[sortIndex]}>
                                             {sortMethod?.map((item: any) => {
                                                 return (
-                                                    <Menu.Item key={item?.key} onClick={item?.funct} className="sort-selection" data-cy="sort-selection">
+                                                    <Menu.Item key={item?.key} onClick={item?.funct} className="sort-selection" data-cy="sort-selection-selected">
                                                         <Row justify="space-between">
                                                             <Col>
                                                                 <Row gutter={15}>
