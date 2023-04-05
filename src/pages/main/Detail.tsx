@@ -122,7 +122,8 @@ function DetailPage() {
             title: "Terbaru",
             funct: () => {
                 setSortIndex("1");
-                setListItem(listItem.sort((a: any, b: any) => b.id - a.id));
+                setListItem(listItem.sort((a: any, b: any) => a.id - b.id));
+                // setListItem(listItem.sort((a: any, b: any) => b.id - a.id));
                 console.log(listItem);
             },
         },
@@ -132,7 +133,8 @@ function DetailPage() {
             title: "Terlama",
             funct: () => {
                 setSortIndex("2");
-                setListItem(listItem.sort((a: any, b: any) => a.id - b.id));
+                setListItem(listItem.sort((a: any, b: any) => b.id - a.id));
+                // setListItem(listItem.sort((a: any, b: any) => a.id - b.id));
                 console.log(listItem);
             },
         },
@@ -142,8 +144,7 @@ function DetailPage() {
             title: "A-Z",
             funct: () => {
                 setSortIndex("3");
-                // setListItem(listItem.sort((a: any, b: any) => a.title.localeCompare(b.title)));
-                setListItem(listItem.sort((a: any, b: any) => a.title - b.title));
+                setListItem(listItem.sort((a: any, b: any) => a.title.localeCompare(b.title)));
             },
         },
         {
@@ -152,8 +153,7 @@ function DetailPage() {
             title: "Z-A",
             funct: () => {
                 setSortIndex("4");
-                // setListItem(listItem.sort((a: any, b: any) => b.title.localeCompare(a.title)));
-                setListItem(listItem.sort((a: any, b: any) => b.title - a.title));
+                setListItem(listItem.sort((a: any, b: any) => b.title.localeCompare(a.title)));
                 console.log(listItem);
             },
         },
