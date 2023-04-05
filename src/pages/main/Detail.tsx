@@ -271,12 +271,13 @@ function DetailPage() {
                                             {sortMethod?.map((item: any, index: any) => {
                                                 return (
                                                     <Menu.Item
-                                                        // key={item?.key}
-                                                        key={index}
+                                                        key={item?.key}
+                                                        // key={index}
                                                         onClick={item?.funct}
                                                         className="sort-selection"
-                                                        data-cy={item?.key === sortIndex ? "sort-selection-selected" : "sort-selection"}
+                                                        data-cy="sort-selection"
                                                     >
+                                                        <div data-cy={item?.key === sortIndex ? "sort-selection-selected" : "false"}></div>
                                                         <Row justify="space-between">
                                                             <Col>
                                                                 <Row gutter={15}>

@@ -107,7 +107,7 @@ function ModalDetail(props: any) {
                                 {itemPriority?.map((item: any, index: any) => {
                                     return (
                                         <Select.Option value={item?.value} key={index}>
-                                            <div data-cy="modal-add-priority-item">
+                                            <div data-cy="modal-add-priority-item" key={index}>
                                                 <Row justify="space-between">
                                                     <Col>
                                                         <Row align="middle" gutter={20}>
