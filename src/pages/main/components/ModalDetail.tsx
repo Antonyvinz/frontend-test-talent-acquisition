@@ -110,6 +110,7 @@ function ModalDetail(props: any) {
                                         <Select.Option
                                             // data-cy="modal-add-priority-item"
                                             // value={item?.value}
+                                            data-cy={index}
                                             value={index}
                                             key={index}
                                         >

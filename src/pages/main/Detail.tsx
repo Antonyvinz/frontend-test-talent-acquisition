@@ -152,7 +152,7 @@ function DetailPage() {
             title: "Terlama",
             funct: () => {
                 setSortIndex("2");
-                setListItem(listItem.sort((a: any, b: any) => b.id - a.id));
+                setListItem(listItem.sort((a: any, b: any) => a.id - b.id));
                 // setListItem(listItem.sort((a: any, b: any) => a.id - b.id));
                 console.log("Oldest", listItem);
             },
@@ -185,7 +185,7 @@ function DetailPage() {
             title: "Belum Selesai",
             funct: () => {
                 setSortIndex("5");
-                setListItem(listItem.sort((a: any, b: any) => a.is_active - b.is_active));
+                setListItem(listItem.sort((a: any, b: any) => b.is_active - a.is_active));
                 console.log("Unfinished", listItem);
             },
         },
