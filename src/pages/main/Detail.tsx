@@ -72,6 +72,10 @@ function DetailPage() {
 
     const createToDo = (value: any) => {
         console.log(value);
+        // const payload = {
+        //     ...value,
+        //     priority: valuePriority(value?.priority),
+        // };
         axiosRepository.postToDoItem(value).then(() => {
             setButtonLoading(true);
             getData();
@@ -93,6 +97,20 @@ function DetailPage() {
             setEditMode(false);
         });
     };
+    // const valuePriority = (value: any) => {
+    //     if (value === 0) {
+    //         return "very-high";
+    //     } else if (value === 1) {
+    //         return "high";
+    //     } else if (value === 2) {
+    //         return "normal";
+    //     } else if (value === 3) {
+    //         return "low";
+    //     } else if (value === 4) {
+    //         return "very-low";
+    //     }
+    // };
+
     const checkItem = (value: any, item: any) => {
         // console.log(value, id);
         let payload = {
@@ -107,6 +125,7 @@ function DetailPage() {
     const editToDo = (value: any) => {
         let payload = {
             is_active: value?.is_active,
+            // priority: valuePriority(value?.priority),
             priority: value?.priority,
             title: value?.title,
         };
@@ -124,7 +143,7 @@ function DetailPage() {
                 setSortIndex("1");
                 setListItem(listItem.sort((a: any, b: any) => a.id - b.id));
                 // setListItem(listItem.sort((a: any, b: any) => b.id - a.id));
-                console.log(listItem);
+                console.log("Latest", listItem);
             },
         },
         {
@@ -133,9 +152,9 @@ function DetailPage() {
             title: "Terlama",
             funct: () => {
                 setSortIndex("2");
-                setListItem(listItem.sort((a: any, b: any) => a.id - b.id));
+                setListItem(listItem.sort((a: any, b: any) => b.id - a.id));
                 // setListItem(listItem.sort((a: any, b: any) => a.id - b.id));
-                console.log(listItem);
+                console.log("Oldest", listItem);
             },
         },
         {
@@ -144,8 +163,9 @@ function DetailPage() {
             title: "A-Z",
             funct: () => {
                 setSortIndex("3");
-                setListItem(listItem.sort((a: any, b: any) => a.title - b.title));
-                // setListItem(listItem.sort((a: any, b: any) => a.title.localeCompare(b.title)));
+                // setListItem(listItem.sort((a: any, b: any) => a.title - b.title));
+                setListItem(listItem.sort((a: any, b: any) => a.title.localeCompare(b.title)));
+                console.log("Ascending", listItem);
             },
         },
         {
@@ -154,9 +174,9 @@ function DetailPage() {
             title: "Z-A",
             funct: () => {
                 setSortIndex("4");
-                setListItem(listItem.sort((a: any, b: any) => b.title - a.title));
-                // setListItem(listItem.sort((a: any, b: any) => b.title.localeCompare(a.title)));
-                console.log(listItem);
+                // setListItem(listItem.sort((a: any, b: any) => b.title - a.title));
+                setListItem(listItem.sort((a: any, b: any) => b.title.localeCompare(a.title)));
+                console.log("Descending", listItem);
             },
         },
         {
@@ -166,7 +186,7 @@ function DetailPage() {
             funct: () => {
                 setSortIndex("5");
                 setListItem(listItem.sort((a: any, b: any) => a.is_active - b.is_active));
-                console.log(listItem);
+                console.log("Unfinished", listItem);
             },
         },
     ];
