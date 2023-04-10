@@ -94,16 +94,14 @@ function ModalDetail(props: any) {
                             />
                         </Form.Item>
                         <Form.Item
-                            // zdata-cy="modal-add-priority-dropdown"
-                            label="PRIORITY"
+                            data-cy="modal-add-priority-title"
+                            // zdata-cy="modal-add-priority-dropdown"label="PRIORITY"
                             validateStatus={errors.priority && touched.priority ? "error" : ""}
                         >
                             <Select
                                 className="modal-add-priority-dropdown"
-                                // data-cy="modal-add-priority-dropdown"
+                                data-cy="modal-add-priority-dropdown"
                                 placeholder="Pilih Priority"
-                                // data-cy="modal-add-priority-item"
-                                // defaultValue={0}
                                 onChange={(e) => {
                                     setFieldValue("priority", e);
                                 }}
@@ -112,16 +110,12 @@ function ModalDetail(props: any) {
                                 {itemPriority?.map((item: any, index: any) => {
                                     return (
                                         <Select.Option
-                                            // data-cy="modal-add-priority-item"
+                                            data-cy="modal-add-priority-item"
                                             // value={item?.value}
-                                            data-cy={index}
                                             value={index}
                                             key={index}
                                         >
-                                            <div
-                                                key={index}
-                                                // data-cy={"modal-add-priority-item-" + index}
-                                            >
+                                            <div key={index}>
                                                 <Row justify="space-between">
                                                     <Col>
                                                         <Row align="middle" gutter={20}>
