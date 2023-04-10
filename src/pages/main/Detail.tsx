@@ -241,7 +241,7 @@ function DetailPage() {
                                         <>
                                             {editMode ? (
                                                 <Input
-                                                    // data-cy="todo-title"
+                                                    data-cy="todo-title"
                                                     className="todo-input-title"
                                                     value={values.title}
                                                     // onAbort={() => handleSubmit}
@@ -254,7 +254,7 @@ function DetailPage() {
                                             ) : (
                                                 <div
                                                     className="todo-title"
-                                                    // data-cy="todo-title"
+                                                    data-cy="todo-title"
                                                     onClick={() => {
                                                         setEditMode(!editMode);
                                                     }}
