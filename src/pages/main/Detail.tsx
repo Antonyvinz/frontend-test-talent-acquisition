@@ -1,9 +1,7 @@
 import { CheckOutlined, LeftOutlined, PlusOutlined } from "@ant-design/icons";
 import { Button, Checkbox, Col, Dropdown, Image, Input, Menu, Row, Skeleton } from "antd";
-import { Formik } from "formik";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import * as yup from "yup";
 import iconAscending from "../../assets/icons/icon-ascending.svg";
 import iconDelete from "../../assets/icons/icon-delete.svg";
 import iconDescending from "../../assets/icons/icon-descending.svg";
@@ -24,6 +22,7 @@ function DetailPage() {
     const [data, setData] = useState({} as any);
     const [dataInit, setDataInit] = useState({} as any);
     const [editId, setEditId] = useState(0);
+    const [editTitle, setEditTitle] = useState("");
     const [modalCreateVisible, setModalCreateVisible] = useState(false);
     const [modalEditVisible, setModalEditVisible] = useState(false);
     const [modalDeleteVisible, setModalDeleteVisible] = useState(false);
@@ -45,6 +44,7 @@ function DetailPage() {
         axiosRepository.getActivityDetail(activityID).then((res) => {
             console.log(res.data);
             setData(res?.data);
+            setEditTitle(res?.data?.title);
             setListItem(res?.data?.todo_items);
             setContentLoading(false);
             setButtonLoading(false);
@@ -91,8 +91,11 @@ function DetailPage() {
     };
     const patchTitle = (value: any) => {
         console.log(value);
+        const payload = {
+            title: value,
+        };
         // setEditMode(false);
-        axiosRepository.patchActivityGroups(value, activityID).then(() => {
+        axiosRepository.patchActivityGroups(payload, activityID).then(() => {
             getData();
             setEditMode(false);
         });
@@ -205,8 +208,6 @@ function DetailPage() {
         }
     };
 
-    const [isFocused, setIsFocused] = useState(false);
-
     return (
         <div className="item-list">
             <div className="todo-title-bar">
@@ -224,7 +225,31 @@ function DetailPage() {
                                 </Button>
                             </Col>
                             <Col>
-                                <Formik
+                                <Input
+                                    style={{ display: !editMode ? "none" : "inline-block" }}
+                                    className="todo-input-title"
+                                    value={editTitle}
+                                    // onAbort={() => handleSubmit}
+                                    name="title"
+                                    bordered={false}
+                                    onBlur={() => {
+                                        patchTitle(editTitle);
+                                    }}
+                                    onChange={(e: any) => {
+                                        setEditTitle(e.target.value);
+                                    }}
+                                />
+                                <div
+                                    data-cy="todo-title"
+                                    className="todo-title"
+                                    style={{ display: editMode ? "none" : "inline-block" }}
+                                    onClick={() => {
+                                        setEditMode(true);
+                                    }}
+                                >
+                                    {data?.title}
+                                </div>
+                                {/* <Formik
                                     enableReinitialize
                                     initialValues={{
                                         title: data?.title,
@@ -240,45 +265,31 @@ function DetailPage() {
                                     }}
                                 >
                                     {({ values, errors, touched, handleBlur, handleChange, handleSubmit, setFieldValue, isSubmitting, isValid }) => (
-                                        <div
-                                            className="todo-title"
-                                            data-cy="todo-title"
-                                            onClick={() => {
-                                                setEditMode(true);
-                                            }}
-                                        >
-                                            {editMode ? (
-                                                <Input
-                                                    className="todo-input-title"
-                                                    value={values.title}
-                                                    // onAbort={() => handleSubmit}
-                                                    name="title"
-                                                    bordered={false}
-                                                    onBlur={() => {
-                                                        setIsFocused(false);
-                                                    }}
-                                                    onFocus={() => {
-                                                        setIsFocused(true);
-                                                    }}
-                                                    onMouseDown={() => {
-                                                        if (!isFocused) {
-                                                            console.log("Input not in focus");
-                                                            handleSubmit();
-                                                        }
-                                                    }}
-                                                    // onMouseDown={() => {
-                                                    //     console.log("mouse down");
-                                                    // }}
-                                                    onChange={handleChange}
-                                                    // onBlur={() => handleSubmit()}
-                                                    // onPressEnter={() => handleSubmit()}
-                                                ></Input>
-                                            ) : (
-                                                <div>{data?.title}</div>
-                                            )}
+                                        <div className="todo-title">
+                                            <Input
+                                                style={{ display: !editMode ? "none" : "inline-block" }}
+                                                className="todo-input-title"
+                                                value={values.title}
+                                                // onAbort={() => handleSubmit}
+                                                name="title"
+                                                bordered={false}
+                                                onBlur={() => {
+                                                    handleSubmit();
+                                                }}
+                                                onChange={handleChange}
+                                            />
+                                            <div
+                                                style={{ display: editMode ? "none" : "inline-block" }}
+                                                data-cy="todo-title"
+                                                onClick={() => {
+                                                    setEditMode(true);
+                                                }}
+                                            >
+                                                {data?.title}
+                                            </div>
                                         </div>
                                     )}
-                                </Formik>
+                                </Formik> */}
                             </Col>
                             <Col>
                                 <Button
