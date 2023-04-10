@@ -205,6 +205,8 @@ function DetailPage() {
         }
     };
 
+    const [isFocused, setIsFocused] = useState(false);
+
     return (
         <div className="item-list">
             <div className="todo-title-bar">
@@ -252,9 +254,24 @@ function DetailPage() {
                                                     // onAbort={() => handleSubmit}
                                                     name="title"
                                                     bordered={false}
+                                                    onBlur={() => {
+                                                        setIsFocused(false);
+                                                    }}
+                                                    onFocus={() => {
+                                                        setIsFocused(true);
+                                                    }}
+                                                    onMouseDown={() => {
+                                                        if (!isFocused) {
+                                                            console.log("Input not in focus");
+                                                            handleSubmit();
+                                                        }
+                                                    }}
+                                                    // onMouseDown={() => {
+                                                    //     console.log("mouse down");
+                                                    // }}
                                                     onChange={handleChange}
-                                                    onBlur={() => handleSubmit()}
-                                                    onPressEnter={() => handleSubmit()}
+                                                    // onBlur={() => handleSubmit()}
+                                                    // onPressEnter={() => handleSubmit()}
                                                 ></Input>
                                             ) : (
                                                 <div>{data?.title}</div>
