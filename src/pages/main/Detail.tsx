@@ -226,6 +226,7 @@ function DetailPage() {
                             </Col>
                             <Col>
                                 <Input
+                                    data-cy="todo-title"
                                     style={{ display: !editMode ? "none" : "inline-block" }}
                                     className="todo-input-title"
                                     value={editTitle}
