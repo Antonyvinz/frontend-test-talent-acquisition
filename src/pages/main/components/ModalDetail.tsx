@@ -93,11 +93,7 @@ function ModalDetail(props: any) {
                                 // }}
                             />
                         </Form.Item>
-                        <Form.Item
-                            data-cy="modal-add-priority-title"
-                            // zdata-cy="modal-add-priority-dropdown"label="PRIORITY"
-                            validateStatus={errors.priority && touched.priority ? "error" : ""}
-                        >
+                        <Form.Item data-cy="modal-add-priority-title" label="PRIORITY" validateStatus={errors.priority && touched.priority ? "error" : ""}>
                             <Select
                                 className="modal-add-priority-dropdown"
                                 data-cy="modal-add-priority-dropdown"

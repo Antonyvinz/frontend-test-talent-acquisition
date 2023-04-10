@@ -239,18 +239,18 @@ function DetailPage() {
                                 >
                                     {({ values, errors, touched, handleBlur, handleChange, handleSubmit, setFieldValue, isSubmitting, isValid }) => (
                                         <>
-                                            {editMode ? (
-                                                <Input
-                                                    data-cy="todo-title"
-                                                    className="todo-input-title"
-                                                    value={values.title}
-                                                    // onAbort={() => handleSubmit}
-                                                    name="title"
-                                                    bordered={false}
-                                                    onChange={handleChange}
-                                                    onBlur={() => handleSubmit()}
-                                                    onPressEnter={() => handleSubmit()}
-                                                />
+                                            <Input
+                                                data-cy="todo-title"
+                                                className="todo-input-title"
+                                                value={values.title}
+                                                // onAbort={() => handleSubmit}
+                                                name="title"
+                                                bordered={false}
+                                                onChange={handleChange}
+                                                onBlur={() => handleSubmit()}
+                                                onPressEnter={() => handleSubmit()}
+                                            />
+                                            {/* {editMode ? (
                                             ) : (
                                                 <div
                                                     className="todo-title"
@@ -261,7 +261,7 @@ function DetailPage() {
                                                 >
                                                     {data?.title}
                                                 </div>
-                                            )}
+                                            )} */}
                                         </>
                                     )}
                                 </Formik>
