@@ -222,48 +222,49 @@ function DetailPage() {
                                 </Button>
                             </Col>
                             <Col>
-                                {editMode ? (
-                                    <Formik
-                                        enableReinitialize
-                                        initialValues={{
-                                            title: data?.title,
-                                        }}
-                                        validationSchema={yup.object().shape({
-                                            // name: yup.string().required("Required"),
-                                        })}
-                                        onSubmit={(
-                                            values
-                                            // , { resetForm }
-                                        ) => {
-                                            patchTitle(values);
-                                        }}
-                                    >
-                                        {({ values, errors, touched, handleBlur, handleChange, handleSubmit, setFieldValue, isSubmitting, isValid }) => (
-                                            <Input
-                                                className="todo-input-title"
-                                                // value={data?.title}
-                                                // value={toDoTitle}
-                                                value={values.title}
-                                                // onAbort={() => handleSubmit}
-                                                name="title"
-                                                bordered={false}
-                                                onChange={handleChange}
-                                                onBlur={() => handleSubmit()}
-                                                onPressEnter={() => handleSubmit()}
-                                            />
-                                        )}
-                                    </Formik>
-                                ) : (
-                                    <div
-                                        className="todo-title"
-                                        data-cy="todo-title"
-                                        onClick={() => {
-                                            setEditMode(!editMode);
-                                        }}
-                                    >
-                                        {data?.title}
-                                    </div>
-                                )}
+                                <div data-cy="todo-title">
+                                    {editMode ? (
+                                        <Formik
+                                            enableReinitialize
+                                            initialValues={{
+                                                title: data?.title,
+                                            }}
+                                            validationSchema={yup.object().shape({
+                                                // name: yup.string().required("Required"),
+                                            })}
+                                            onSubmit={(
+                                                values
+                                                // , { resetForm }
+                                            ) => {
+                                                patchTitle(values);
+                                            }}
+                                        >
+                                            {({ values, errors, touched, handleBlur, handleChange, handleSubmit, setFieldValue, isSubmitting, isValid }) => (
+                                                <Input
+                                                    data-cy="todo-title"
+                                                    className="todo-input-title"
+                                                    value={values.title}
+                                                    // onAbort={() => handleSubmit}
+                                                    name="title"
+                                                    bordered={false}
+                                                    onChange={handleChange}
+                                                    onBlur={() => handleSubmit()}
+                                                    onPressEnter={() => handleSubmit()}
+                                                />
+                                            )}
+                                        </Formik>
+                                    ) : (
+                                        <div
+                                            className="todo-title"
+                                            // data-cy="todo-title"
+                                            onClick={() => {
+                                                setEditMode(!editMode);
+                                            }}
+                                        >
+                                            {data?.title}
+                                        </div>
+                                    )}
+                                </div>
                             </Col>
                             <Col>
                                 <Button
