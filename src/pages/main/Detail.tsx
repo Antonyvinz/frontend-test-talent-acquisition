@@ -17,7 +17,7 @@ import ModalDetail from "./components/ModalDetail";
 
 function DetailPage() {
     const navigate = useNavigate();
-    const editTitleInput = useRef(null);
+    const editTitleInput = useRef(null as any);
     const { activityID } = useParams();
     const [listItem, setListItem] = useState([] as any);
     const [data, setData] = useState({} as any);
@@ -100,6 +100,16 @@ function DetailPage() {
             getData();
             setEditMode(false);
         });
+    };
+    const handleEditTitle = () => {
+        setEditMode(true);
+        if (editMode) {
+            patchTitle(editTitle);
+        } else {
+            setTimeout(() => {
+                editTitleInput?.current?.focus();
+            }, 100);
+        }
     };
     // const valuePriority = (value: any) => {
     //     if (value === 0) {
@@ -228,51 +238,39 @@ function DetailPage() {
                             </Col>
                             <Col>
                                 {editMode ? (
-                                    <Input
-                                        ref={editTitleInput}
-                                        className="todo-input-title"
-                                        value={editTitle}
-                                        name="title"
-                                        bordered={false}
-                                        onBlur={() => {
-                                            setEditMode(false);
-                                            patchTitle(editTitle);
-                                        }}
-                                        onChange={(e: any) => {
-                                            setEditTitle(e.target.value);
-                                        }}
-                                    />
-                                ) : (
-                                    // <input
-                                    //     className="todo-input-title"
-                                    //     type="text"
+                                    // <Input
                                     //     ref={editTitleInput}
+                                    //     className="todo-input-title"
+                                    //     value={editTitle}
+                                    //     name="title"
+                                    //     bordered={false}
                                     //     onBlur={() => {
                                     //         setEditMode(false);
                                     //         patchTitle(editTitle);
                                     //     }}
-                                    //     onChange={(e) => setEditTitle(e.target.value)}
-                                    //     value={editTitle}
+                                    //     onChange={(e: any) => {
+                                    //         setEditTitle(e.target.value);
+                                    //     }}
                                     // />
-                                    <div
-                                        data-cy="todo-title"
-                                        className="todo-title"
-                                        onClick={() => {
-                                            setEditMode(true);
+                                    <input
+                                        className="todo-input-title"
+                                        type="text"
+                                        ref={editTitleInput}
+                                        onBlur={() => {
+                                            setEditMode(false);
+                                            patchTitle(editTitle);
                                         }}
-                                    >
+                                        onChange={(e) => setEditTitle(e.target.value)}
+                                        value={editTitle}
+                                    />
+                                ) : (
+                                    <div data-cy="todo-title" className="todo-title" onClick={() => handleEditTitle()}>
                                         {data?.title}
                                     </div>
                                 )}
                             </Col>
                             <Col>
-                                <Button
-                                    className="todo-edit-button"
-                                    data-cy="todo-title-edit-button"
-                                    onClick={() => {
-                                        setEditMode(!editMode);
-                                    }}
-                                >
+                                <Button className="todo-edit-button" data-cy="todo-title-edit-button" onClick={() => handleEditTitle()}>
                                     <Image src={iconEdit} preview={false} />
                                 </Button>
                             </Col>
