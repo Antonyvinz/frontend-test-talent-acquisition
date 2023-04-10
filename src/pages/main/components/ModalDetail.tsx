@@ -102,7 +102,7 @@ function ModalDetail(props: any) {
                                 className="modal-add-priority-dropdown"
                                 // data-cy="modal-add-priority-dropdown"
                                 placeholder="Pilih Priority"
-                                data-cy="modal-add-priority-item"
+                                // data-cy="modal-add-priority-item"
                                 // defaultValue={0}
                                 onChange={(e) => {
                                     setFieldValue("priority", e);
