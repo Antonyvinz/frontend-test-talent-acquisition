@@ -1,6 +1,6 @@
 import { CheckOutlined, LeftOutlined, PlusOutlined } from "@ant-design/icons";
 import { Button, Checkbox, Col, Dropdown, Image, Input, Menu, Row, Skeleton } from "antd";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import iconAscending from "../../assets/icons/icon-ascending.svg";
 import iconDelete from "../../assets/icons/icon-delete.svg";
@@ -17,6 +17,7 @@ import ModalDetail from "./components/ModalDetail";
 
 function DetailPage() {
     const navigate = useNavigate();
+    const editTitleInput = useRef(null);
     const { activityID } = useParams();
     const [listItem, setListItem] = useState([] as any);
     const [data, setData] = useState({} as any);
@@ -213,100 +214,65 @@ function DetailPage() {
             <div className="todo-title-bar">
                 <Row justify="space-between">
                     <Col>
-                        <div
-                            data-cy="todo-title"
-                            // style={{ backgroundColor: "yellow" }}
-                        >
-                            <Row align="middle">
-                                <Col>
-                                    <Button
-                                        className="todo-nav-button"
-                                        onClick={() => {
-                                            navigate("/");
-                                        }}
-                                    >
-                                        <LeftOutlined />
-                                    </Button>
-                                </Col>
-                                <Col>
-                                    {editMode ? (
-                                        <Input
-                                            className="todo-input-title"
-                                            value={editTitle}
-                                            // onAbort={() => handleSubmit}
-                                            name="title"
-                                            bordered={false}
-                                            onBlur={() => {
-                                                patchTitle(editTitle);
-                                            }}
-                                            onChange={(e: any) => {
-                                                setEditTitle(e.target.value);
-                                            }}
-                                        />
-                                    ) : (
-                                        <div
-                                            className="todo-title"
-                                            onClick={() => {
-                                                setEditMode(true);
-                                            }}
-                                        >
-                                            {data?.title}
-                                        </div>
-                                    )}
-                                    {/* <Formik
-                                    enableReinitialize
-                                    initialValues={{
-                                        title: data?.title,
-                                    }}
-                                    validationSchema={yup.object().shape({
-                                        // name: yup.string().required("Required"),
-                                    })}
-                                    onSubmit={(
-                                        values
-                                        // , { resetForm }
-                                    ) => {
-                                        patchTitle(values);
+                        <Row align="middle">
+                            <Col>
+                                <Button
+                                    className="todo-nav-button"
+                                    onClick={() => {
+                                        navigate("/");
                                     }}
                                 >
-                                    {({ values, errors, touched, handleBlur, handleChange, handleSubmit, setFieldValue, isSubmitting, isValid }) => (
-                                        <div className="todo-title">
-                                            <Input
-                                                style={{ display: !editMode ? "none" : "inline-block" }}
-                                                className="todo-input-title"
-                                                value={values.title}
-                                                // onAbort={() => handleSubmit}
-                                                name="title"
-                                                bordered={false}
-                                                onBlur={() => {
-                                                    handleSubmit();
-                                                }}
-                                                onChange={handleChange}
-                                            />
-                                            <div
-                                                style={{ display: editMode ? "none" : "inline-block" }}
-                                                data-cy="todo-title"
-                                                onClick={() => {
-                                                    setEditMode(true);
-                                                }}
-                                            >
-                                                {data?.title}
-                                            </div>
-                                        </div>
-                                    )}
-                                </Formik> */}
-                                </Col>
-                                <Col>
-                                    <Button
-                                        className="todo-edit-button"
+                                    <LeftOutlined />
+                                </Button>
+                            </Col>
+                            <Col>
+                                {editMode ? (
+                                    <input
+                                        className="todo-input-title"
+                                        type="text"
+                                        ref={editTitleInput}
+                                        onBlur={() => {
+                                            setEditMode(false);
+                                            patchTitle(editTitle);
+                                        }}
+                                        onChange={(e) => setEditTitle(e.target.value)}
+                                        value={editTitle}
+                                    />
+                                ) : (
+                                    // <Input
+                                    //     className="todo-input-title"
+                                    //     value={editTitle}
+                                    //     name="title"
+                                    //     bordered={false}
+                                    //     onBlur={() => {
+                                    //         patchTitle(editTitle);
+                                    //     }}
+                                    //     onChange={(e: any) => {
+                                    //         setEditTitle(e.target.value);
+                                    //     }}
+                                    // />
+                                    <div
+                                        data-cy="todo-title"
+                                        className="todo-title"
                                         onClick={() => {
-                                            setEditMode(!editMode);
+                                            setEditMode(true);
                                         }}
                                     >
-                                        <Image src={iconEdit} preview={false} />
-                                    </Button>
-                                </Col>
-                            </Row>
-                        </div>
+                                        {data?.title}
+                                    </div>
+                                )}
+                            </Col>
+                            <Col>
+                                <Button
+                                    className="todo-edit-button"
+                                    onClick={() => {
+                                        setEditMode(!editMode);
+                                    }}
+                                >
+                                    <Image src={iconEdit} preview={false} />
+                                </Button>
+                            </Col>
+                        </Row>
                     </Col>
                     <Col>
                         <Row gutter={10}>
