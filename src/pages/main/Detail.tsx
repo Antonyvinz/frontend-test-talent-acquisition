@@ -225,31 +225,34 @@ function DetailPage() {
                                 </Button>
                             </Col>
                             <Col>
-                                <Input
-                                    data-cy="todo-title"
-                                    style={{ display: !editMode ? "none" : "inline-block" }}
-                                    className="todo-input-title"
-                                    value={editTitle}
-                                    // onAbort={() => handleSubmit}
-                                    name="title"
-                                    bordered={false}
-                                    onBlur={() => {
-                                        patchTitle(editTitle);
-                                    }}
-                                    onChange={(e: any) => {
-                                        setEditTitle(e.target.value);
-                                    }}
-                                />
-                                <div
-                                    // data-cy="todo-title"
-                                    className="todo-title"
-                                    style={{ display: editMode ? "none" : "inline-block" }}
-                                    onClick={() => {
-                                        setEditMode(true);
-                                    }}
-                                >
-                                    {data?.title}
-                                </div>
+                                {editMode ? (
+                                    <Input
+                                        data-cy="todo-title"
+                                        // style={{ display: !editMode ? "none" : "inline-block" }}
+                                        className="todo-input-title"
+                                        value={editTitle}
+                                        // onAbort={() => handleSubmit}
+                                        name="title"
+                                        bordered={false}
+                                        onBlur={() => {
+                                            patchTitle(editTitle);
+                                        }}
+                                        onChange={(e: any) => {
+                                            setEditTitle(e.target.value);
+                                        }}
+                                    />
+                                ) : (
+                                    <div
+                                        // data-cy="todo-title"
+                                        className="todo-title"
+                                        // style={{ display: editMode ? "none" : "inline-block" }}
+                                        onClick={() => {
+                                            setEditMode(true);
+                                        }}
+                                    >
+                                        {data?.title}
+                                    </div>
+                                )}
                                 {/* <Formik
                                     enableReinitialize
                                     initialValues={{
