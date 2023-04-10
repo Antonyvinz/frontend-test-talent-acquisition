@@ -213,47 +213,47 @@ function DetailPage() {
             <div className="todo-title-bar">
                 <Row justify="space-between">
                     <Col>
-                        <Row align="middle">
-                            <Col>
-                                <Button
-                                    className="todo-nav-button"
-                                    onClick={() => {
-                                        navigate("/");
-                                    }}
-                                >
-                                    <LeftOutlined />
-                                </Button>
-                            </Col>
-                            <Col>
-                                {editMode ? (
-                                    <Input
-                                        data-cy="todo-title"
-                                        // style={{ display: !editMode ? "none" : "inline-block" }}
-                                        className="todo-input-title"
-                                        value={editTitle}
-                                        // onAbort={() => handleSubmit}
-                                        name="title"
-                                        bordered={false}
-                                        onBlur={() => {
-                                            patchTitle(editTitle);
-                                        }}
-                                        onChange={(e: any) => {
-                                            setEditTitle(e.target.value);
-                                        }}
-                                    />
-                                ) : (
-                                    <div
-                                        // data-cy="todo-title"
-                                        className="todo-title"
-                                        // style={{ display: editMode ? "none" : "inline-block" }}
+                        <div
+                            data-cy="todo-title"
+                            // style={{ backgroundColor: "yellow" }}
+                        >
+                            <Row align="middle">
+                                <Col>
+                                    <Button
+                                        className="todo-nav-button"
                                         onClick={() => {
-                                            setEditMode(true);
+                                            navigate("/");
                                         }}
                                     >
-                                        {data?.title}
-                                    </div>
-                                )}
-                                {/* <Formik
+                                        <LeftOutlined />
+                                    </Button>
+                                </Col>
+                                <Col>
+                                    {editMode ? (
+                                        <Input
+                                            className="todo-input-title"
+                                            value={editTitle}
+                                            // onAbort={() => handleSubmit}
+                                            name="title"
+                                            bordered={false}
+                                            onBlur={() => {
+                                                patchTitle(editTitle);
+                                            }}
+                                            onChange={(e: any) => {
+                                                setEditTitle(e.target.value);
+                                            }}
+                                        />
+                                    ) : (
+                                        <div
+                                            className="todo-title"
+                                            onClick={() => {
+                                                setEditMode(true);
+                                            }}
+                                        >
+                                            {data?.title}
+                                        </div>
+                                    )}
+                                    {/* <Formik
                                     enableReinitialize
                                     initialValues={{
                                         title: data?.title,
@@ -294,18 +294,19 @@ function DetailPage() {
                                         </div>
                                     )}
                                 </Formik> */}
-                            </Col>
-                            <Col>
-                                <Button
-                                    className="todo-edit-button"
-                                    onClick={() => {
-                                        setEditMode(!editMode);
-                                    }}
-                                >
-                                    <Image src={iconEdit} preview={false} />
-                                </Button>
-                            </Col>
-                        </Row>
+                                </Col>
+                                <Col>
+                                    <Button
+                                        className="todo-edit-button"
+                                        onClick={() => {
+                                            setEditMode(!editMode);
+                                        }}
+                                    >
+                                        <Image src={iconEdit} preview={false} />
+                                    </Button>
+                                </Col>
+                            </Row>
+                        </div>
                     </Col>
                     <Col>
                         <Row gutter={10}>
