@@ -218,6 +218,7 @@ function DetailPage() {
                             <Col>
                                 <Button
                                     className="todo-nav-button"
+                                    data-cy="todo-back-button"
                                     onClick={() => {
                                         navigate("/");
                                     }}
@@ -227,29 +228,31 @@ function DetailPage() {
                             </Col>
                             <Col>
                                 {editMode ? (
-                                    <input
-                                        className="todo-input-title"
-                                        type="text"
+                                    <Input
                                         ref={editTitleInput}
+                                        className="todo-input-title"
+                                        value={editTitle}
+                                        name="title"
+                                        bordered={false}
                                         onBlur={() => {
                                             setEditMode(false);
                                             patchTitle(editTitle);
                                         }}
-                                        onChange={(e) => setEditTitle(e.target.value)}
-                                        value={editTitle}
+                                        onChange={(e: any) => {
+                                            setEditTitle(e.target.value);
+                                        }}
                                     />
                                 ) : (
-                                    // <Input
+                                    // <input
                                     //     className="todo-input-title"
-                                    //     value={editTitle}
-                                    //     name="title"
-                                    //     bordered={false}
+                                    //     type="text"
+                                    //     ref={editTitleInput}
                                     //     onBlur={() => {
+                                    //         setEditMode(false);
                                     //         patchTitle(editTitle);
                                     //     }}
-                                    //     onChange={(e: any) => {
-                                    //         setEditTitle(e.target.value);
-                                    //     }}
+                                    //     onChange={(e) => setEditTitle(e.target.value)}
+                                    //     value={editTitle}
                                     // />
                                     <div
                                         data-cy="todo-title"
@@ -265,6 +268,7 @@ function DetailPage() {
                             <Col>
                                 <Button
                                     className="todo-edit-button"
+                                    data-cy="todo-title-edit-button"
                                     onClick={() => {
                                         setEditMode(!editMode);
                                     }}
