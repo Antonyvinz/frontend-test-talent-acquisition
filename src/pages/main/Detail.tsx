@@ -241,7 +241,7 @@ function DetailPage() {
                                     }}
                                 />
                                 <div
-                                    data-cy="todo-title"
+                                    // data-cy="todo-title"
                                     className="todo-title"
                                     style={{ display: editMode ? "none" : "inline-block" }}
                                     onClick={() => {
