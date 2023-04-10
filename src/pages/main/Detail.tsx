@@ -238,7 +238,13 @@ function DetailPage() {
                                     }}
                                 >
                                     {({ values, errors, touched, handleBlur, handleChange, handleSubmit, setFieldValue, isSubmitting, isValid }) => (
-                                        <div>
+                                        <div
+                                            className="todo-title"
+                                            data-cy="todo-title"
+                                            onClick={() => {
+                                                setEditMode(true);
+                                            }}
+                                        >
                                             {editMode ? (
                                                 <Input
                                                     className="todo-input-title"
@@ -249,17 +255,9 @@ function DetailPage() {
                                                     onChange={handleChange}
                                                     onBlur={() => handleSubmit()}
                                                     onPressEnter={() => handleSubmit()}
-                                                />
+                                                ></Input>
                                             ) : (
-                                                <div
-                                                    className="todo-title"
-                                                    data-cy="todo-title"
-                                                    onClick={() => {
-                                                        setEditMode(true);
-                                                    }}
-                                                >
-                                                    {data?.title}
-                                                </div>
+                                                <div>{data?.title}</div>
                                             )}
                                         </div>
                                     )}
