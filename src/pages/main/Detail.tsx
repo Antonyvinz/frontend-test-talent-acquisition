@@ -238,7 +238,7 @@ function DetailPage() {
                                     }}
                                 >
                                     {({ values, errors, touched, handleBlur, handleChange, handleSubmit, setFieldValue, isSubmitting, isValid }) => (
-                                        <>
+                                        <div>
                                             {editMode ? (
                                                 <Input
                                                     className="todo-input-title"
@@ -255,13 +255,13 @@ function DetailPage() {
                                                     className="todo-title"
                                                     data-cy="todo-title"
                                                     onClick={() => {
-                                                        setEditMode(!editMode);
+                                                        setEditMode(true);
                                                     }}
                                                 >
                                                     {data?.title}
                                                 </div>
                                             )}
-                                        </>
+                                        </div>
                                     )}
                                 </Formik>
                             </Col>
